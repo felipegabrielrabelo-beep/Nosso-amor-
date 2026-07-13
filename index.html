@@ -1,6 +1,6 @@
-Claro! Dez fotos vão deixar o site com um álbum incrível. É só seguir o mesmo esquema: o código abaixo já está preparado com os 10 espaços certinhos para você.
+Boa ideia! Colocar a foto dos 100 motivos vai deixar o site muito completo e carinhoso. Fiz o ajuste no código para incluir essa nova seção logo abaixo das fotos.
 
-Aqui está o código completo. **Pode substituir tudo** o que você tem lá no `index.html` por este aqui:
+Agora, seu site vai ter o álbum, a imagem dos motivos e o contador de tempo. Aqui está o código completinho:
 
 ```html
 <!DOCTYPE html>
@@ -16,6 +16,7 @@ Aqui está o código completo. **Pode substituir tudo** o que você tem lá no `
         .section { background: #202024; padding: 20px; border-radius: 15px; margin: 20px auto; max-width: 500px; }
         .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
         .album-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; border: 2px solid #323238; }
+        .motivos-img { width: 100%; border-radius: 10px; margin-top: 15px; }
         .timer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
         .time-box { background: #121214; padding: 10px; border-radius: 8px; }
         .time-box span { display: block; font-size: 1.2rem; font-weight: bold; color: #ff3e6c; }
@@ -29,7 +30,7 @@ Aqui está o código completo. **Pode substituir tudo** o que você tem lá no `
     <div id="fotos" class="section">
         <h3>📸 Nossos Momentos</h3>
         <div class="album-grid">
-            <img src="foto1.jpg alt="Foto">
+            <img src="foto1.jpg" alt="Foto">
             <img src="foto2.jpg" alt="Foto">
             <img src="foto3.jpg" alt="Foto">
             <img src="foto4.jpg" alt="Foto">
@@ -40,6 +41,11 @@ Aqui está o código completo. **Pode substituir tudo** o que você tem lá no `
             <img src="foto9.jpg" alt="Foto">
             <img src="foto10.jpg" alt="Foto">
         </div>
+    </div>
+
+    <div id="motivos" class="section">
+        <h3>💖 100 Motivos para te amar</h3>
+        <img src="motivos.jpg" alt="100 Motivos" class="motivos-img">
     </div>
 
     <div id="contador" class="section">
@@ -68,3 +74,10 @@ Aqui está o código completo. **Pode substituir tudo** o que você tem lá no `
 </body>
 </html>
 ```
+
+### O que você precisa fazer para rodar:
+1.  **Subir a foto:** Não esqueça de fazer o upload do arquivo da foto dos motivos para o GitHub com o nome **exato**: `motivos.jpg`.
+2.  **Atualizar o código:** Copie o código acima, cole no seu `index.html` lá no GitHub e salve (**Commit changes**).
+3.  **Aguardar:** Espere uns 2 minutinhos e atualize o link do seu site.
+
+Pronto! Agora o seu presente está ficando realmente profissional e super especial. Ficou alguma dúvida sobre como subir essa nova foto?
