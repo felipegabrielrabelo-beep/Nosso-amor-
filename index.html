@@ -1,1 +1,229 @@
-<!DOCTYPE html><html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Felipe ❤️ Anne</title><style>body{font-family:Arial;background:#111;color:#fff;text-align:center;padding:40px}img{max-width:320px;border-radius:16px}section{max-width:800px;margin:auto}</style></head><body><section><h1>Felipe Gabriel ❤️ Anne Melyssa</h1><p>Desde 12/05/2026</p><img src="100-coisas.jpg"><h2>Carta</h2><p>Anne, fiz este site para guardar nossas lembranças. Que ele seja um lugar para voltar sempre e lembrar do quanto você é especial para mim. Eu te amo.</p></section></body></html>
+<!DOCTYPE h<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe Gabriel & Anne Melyssa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #121214;
+            color: #e1e1e6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Efeito de Corações Caindo */
+        .heart {
+            position: fixed;
+            color: #ff3e6c;
+            font-size: 20px;
+            animation: fall linear forwards;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        header {
+            text-align: center;
+            margin: 40px 0 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            color: #ff3e6c;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 62, 108, 0.3);
+        }
+
+        .subtitle {
+            color: #a8a8b3;
+            font-size: 1.1rem;
+        }
+
+        /* Contador */
+        .counter-container {
+            background: #202024;
+            border: 1px solid #29292e;
+            border-radius: 15px;
+            padding: 25px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        .counter-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #e1e1e6;
+        }
+
+        .timer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-box {
+            background: #121214;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #323238;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff3e6c;
+        }
+
+        .time-box label {
+            font-size: 0.75rem;
+            color: #a8a8b3;
+            text-transform: uppercase;
+        }
+
+        /* Seção da Imagem / 100 Motivos */
+        .card {
+            background: #202024;
+            border: 1px solid #29292e;
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .card h3 {
+            color: #ff3e6c;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .main-photo {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid #323238;
+            transition: transform 0.3s ease;
+        }
+
+        .main-photo:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Felipe Gabriel & Anne Melyssa</h1>
+        <p class="subtitle">Nosso Amor Eterno ✨</p>
+    </header>
+
+    <div class="counter-container">
+        <p class="counter-title">⏳ Tempo que escolhi te amar:</p>
+        <div class="timer">
+            <div class="time-box">
+                <span id="days">00</span>
+                <label>Dias</label>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <label>Horas</label>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <label>Min</label>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <label>Seg</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>❤️ Nossos 100 Motivos</h3>
+        <img src="100-coisas.jpg" alt="100 motivos para te amar" class="main-photo">
+    </div>
+
+    <script>
+        // Data de Início: 12/05/2026
+        const startDate = new Date('2026-05-12T00:00:00');
+
+        function updateCounter() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            if (difference < 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // Criador de Chuva de Corações
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
