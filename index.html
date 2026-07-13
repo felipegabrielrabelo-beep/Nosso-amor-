@@ -1,6 +1,6 @@
-Criar uma estrutura completa com menu e várias seções vai deixar o seu site incrível! Como o arquivo `index.html` precisa ser organizado, vamos usar uma estrutura de "botões" ou "links" para cada uma dessas partes.
+Claro! Dez fotos vão deixar o site com um álbum incrível. É só seguir o mesmo esquema: o código abaixo já está preparado com os 10 espaços certinhos para você.
 
-Aqui está o código atualizado. Ele já inclui o menu que você pediu no topo e preparou as seções para você preencher depois:
+Aqui está o código completo. **Pode substituir tudo** o que você tem lá no `index.html` por este aqui:
 
 ```html
 <!DOCTYPE html>
@@ -8,23 +8,14 @@ Aqui está o código atualizado. Ele já inclui o menu que você pediu no topo e
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felipe Gabriel & Anne Melyssa</title>
+    <title>Felipe & Anne</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #121214; color: #e1e1e6; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
-        
-        header { text-align: center; margin: 20px 0; }
-        h1 { color: #ff3e6c; font-size: 2rem; }
-
-        /* Menu */
-        .menu { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 500px; margin-bottom: 30px; }
-        .menu-btn { background: #202024; border: 1px solid #323238; color: #e1e1e6; padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-size: 0.9rem; transition: 0.3s; }
-        .menu-btn:hover { background: #ff3e6c; color: white; }
-
-        /* Estilo básico para seções */
-        .section { background: #202024; border: 1px solid #29292e; border-radius: 15px; padding: 20px; width: 100%; max-width: 500px; margin-bottom: 20px; text-align: center; }
-        
-        /* Contador */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background-color: #121214; color: #fff; text-align: center; padding: 20px; }
+        h1 { color: #ff3e6c; margin-bottom: 20px; }
+        .section { background: #202024; padding: 20px; border-radius: 15px; margin: 20px auto; max-width: 500px; }
+        .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .album-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; border: 2px solid #323238; }
         .timer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
         .time-box { background: #121214; padding: 10px; border-radius: 8px; }
         .time-box span { display: block; font-size: 1.2rem; font-weight: bold; color: #ff3e6c; }
@@ -33,27 +24,24 @@ Aqui está o código atualizado. Ele já inclui o menu que você pediu no topo e
 </head>
 <body>
 
-    <header>
-        <h1>Felipe Gabriel & Anne Melyssa</h1>
-        <p>❤️ Nosso Amor</p>
-    </header>
+    <h1>Felipe & Anne</h1>
 
-    <!-- Menu -->
-    <nav class="menu">
-        <a href="#carta" class="menu-btn">💌 Carta</a>
-        <a href="#fotos" class="menu-btn">📸 Álbum</a>
-        <a href="#videos" class="menu-btn">🎥 Vídeos</a>
-        <a href="#playlist" class="menu-btn">🎵 Playlist</a>
-        <a href="#motivos" class="menu-btn">❤️ 100 Motivos</a>
-        <a href="#contador" class="menu-btn">📅 Tempo</a>
-        <a href="#lugares" class="menu-btn">🌍 Lugares</a>
-        <a href="#sonhos" class="menu-btn">⭐ Sonhos</a>
-        <a href="#mensagens" class="menu-btn">💬 Mensagens</a>
-        <a href="#capsula" class="menu-btn">⏳ Cápsula</a>
-        <a href="#final" class="menu-btn" style="grid-column: span 2;">🎁 Surpresa Final</a>
-    </nav>
+    <div id="fotos" class="section">
+        <h3>📸 Nossos Momentos</h3>
+        <div class="album-grid">
+            <img src= alt="Foto">
+            <img src="foto2.jpg" alt="Foto">
+            <img src="foto3.jpg" alt="Foto">
+            <img src="foto4.jpg" alt="Foto">
+            <img src="foto5.jpg" alt="Foto">
+            <img src="foto6.jpg" alt="Foto">
+            <img src="foto7.jpg" alt="Foto">
+            <img src="foto8.jpg" alt="Foto">
+            <img src="foto9.jpg" alt="Foto">
+            <img src="foto10.jpg" alt="Foto">
+        </div>
+    </div>
 
-    <!-- Exemplo de como você vai preencher -->
     <div id="contador" class="section">
         <h3>📅 Tempo Juntos</h3>
         <div class="timer">
@@ -64,26 +52,15 @@ Aqui está o código atualizado. Ele já inclui o menu que você pediu no topo e
         </div>
     </div>
 
-    <!-- Seções vazias para você preencher -->
-    <div id="carta" class="section"><h3>💌 Carta</h3><p>Escreva aqui sua carta...</p></div>
-    <div id="fotos" class="section"><h3>📸 Álbum</h3><p>Coloque aqui suas fotos (use &lt;img src="link-da-foto.jpg"&gt;)...</p></div>
-
     <script>
-        // Data de Início
         const startDate = new Date('2026-05-12T00:00:00');
-
         function updateCounter() {
             const now = new Date();
-            const difference = now - startDate;
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            const diff = now - startDate;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
         }
         setInterval(updateCounter, 1000);
         updateCounter();
@@ -92,9 +69,8 @@ Aqui está o código atualizado. Ele já inclui o menu que você pediu no topo e
 </html>
 ```
 
-### Dicas para continuar:
-1.  **Como adicionar fotos:** Dentro de cada `div` (seção), use a tag `<img>` para fotos e `<iframe>` se quiser colocar vídeos (como do YouTube).
-2.  **Organização:** Percebeu que cada parte do menu tem um `href="#algo"`? Isso faz com que, ao clicar, a página "pule" direto para aquele conteúdo.
-3.  **Expansão:** Agora você só precisa substituir o texto "Escreva aqui..." pelo seu conteúdo real!
+### O que você precisa fazer agora:
+1.  **Copie esse código** e cole no seu `index.html` (lá no GitHub).
+2.  **Suba as 10 fotos** no seu repositório. Lembre-se: os nomes dos arquivos precisam ser **exatamente** `foto1.jpg`, `foto2.jpg`, `foto3.jpg`... até `foto10.jpg`.
 
-O que você quer preencher primeiro? Posso te ajudar a escrever o código de alguma seção específica, como a das fotos ou a da carta!
+Se você seguir esse padrão de nomes, elas vão aparecer automaticamente no site! Qualquer dúvida, é só me chamar. 😉
