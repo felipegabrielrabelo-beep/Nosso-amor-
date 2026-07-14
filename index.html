@@ -1,6 +1,22 @@
+O problema aconteceu porque, ao copiar o código, **você copiou também as tags ` ```html ` que eu coloco para destacar o texto**. Isso fez com que o navegador lesse essas letras como se fossem parte do título do site!
 
+Para arrumar, você só precisa **apagar essas tags** no seu arquivo do GitHub.
 
+### Como corrigir agora mesmo:
 
+1.  Vá no seu GitHub e abra o arquivo `index.html`.
+2.  Clique no **lápis (Edit)**.
+3.  Logo na primeira linha, você provavelmente verá escrito ` ```html `. **Apague isso**.
+4.  Role até o final do código. Se lá no final também tiver um ` ``` `, **apague também**.
+5.  Clique em **Commit changes**.
+
+---
+
+### Código Limpo (sem as tags que estragaram o visual)
+
+Aqui está o código **totalmente limpo**, pronto para ser copiado e colado (sem o ` ```html` no começo):
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -53,17 +69,6 @@
         </div>
     </header>
 
-    <!-- Seção de Música -->
-    <section class="section">
-        <p style="color: #ff3e6c; font-weight: bold; margin-bottom: 10px;">🎶 Aperte o play para nossa música</p>
-        <audio id="meuAudio" loop>
-            <source src="musica.mp3" type="audio/mpeg">
-        </audio>
-        <button onclick="tocarMusica()" style="background: #ff3e6c; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer;">
-            ▶ Tocar Música
-        </button>
-    </section>
-
     <section class="section">
         <h3>💌 Carta de Amor</h3>
         <div class="letter-card">
@@ -96,11 +101,33 @@
     <section class="section">
         <h3>🎵 Nossa Playlist</h3>
         <div class="content-box">
-            <p>Cole o código de incorporação do Spotify aqui abaixo:</p>
-            <div style="margin-top: 10px;">[Cole o Player aqui]</div>
+            <p>De Janeiro a Janeiro:</p>
+            <div style="margin-top: 10px;">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/jZ_y-N57VjU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
     </section>
 
     <section class="section">
         <h3>❤️ 100 Motivos para te amar</h3>
-        <img src="motivos.jpg" alt="100 Motivos" style="width:
+        <img src="motivos.jpg" alt="100 Motivos" style="width: 100%; border-radius: 10px; margin-top: 10px;">
+    </section>
+
+    <script>
+        const startDate = new Date('2026-05-12T00:00:00');
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+            document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+    </script>
+</body>
+</html>
+```
+
+Agora, ao colar, preste bastante atenção para garantir que o código comece **exatamente** com `<!DOCTYPE html>` e termine com `</html>`. Nada de ` ```html ` no início ou ` ``` ` no final! Tente de novo e vai dar certo! 😊
