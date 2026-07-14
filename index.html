@@ -1,6 +1,8 @@
-Boa ideia! Colocar a foto dos 100 motivos vai deixar o site muito completo e carinhoso. Fiz o ajuste no código para incluir essa nova seção logo abaixo das fotos.
+Isso vai ficar incrível! Como você quer que pareça um aplicativo organizado, vamos estruturar tudo com "cards" (cartões) bem definidos.
 
-Agora, seu site vai ter o álbum, a imagem dos motivos e o contador de tempo. Aqui está o código completinho:
+Vou deixar tudo em um único arquivo `index.html` para facilitar para você. Assim, você só precisa copiar, colar e depois apenas substituir os textos e links dentro das áreas indicadas.
+
+Aqui está o código completo:
 
 ```html
 <!DOCTYPE html>
@@ -8,26 +10,58 @@ Agora, seu site vai ter o álbum, a imagem dos motivos e o contador de tempo. Aq
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felipe & Anne</title>
+    <title>Para Anne Melyssa</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        body { background-color: #121214; color: #fff; text-align: center; padding: 20px; }
-        h1 { color: #ff3e6c; margin-bottom: 20px; }
-        .section { background: #202024; padding: 20px; border-radius: 15px; margin: 20px auto; max-width: 500px; }
-        .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .album-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; border: 2px solid #323238; }
-        .motivos-img { width: 100%; border-radius: 10px; margin-top: 15px; }
-        .timer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+        /* Estilo Geral */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #121214; color: #fff; padding: 20px; text-align: center; overflow-x: hidden; }
+        
+        h1 { color: #ff3e6c; margin-bottom: 5px; font-size: 1.6rem; }
+        .section { background: #202024; padding: 20px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        h3 { color: #ff3e6c; margin-bottom: 15px; border-bottom: 1px solid #323238; padding-bottom: 10px; }
+
+        /* Contador */
+        .timer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 10px; }
         .time-box { background: #121214; padding: 10px; border-radius: 8px; }
-        .time-box span { display: block; font-size: 1.2rem; font-weight: bold; color: #ff3e6c; }
-        .time-box label { font-size: 0.7rem; color: #a8a8b3; }
+        .time-box span { display: block; font-size: 1rem; font-weight: bold; color: #ff3e6c; }
+        .time-box label { font-size: 0.6rem; color: #a8a8b3; }
+
+        /* Álbum */
+        .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .album-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; border: 2px solid #323238; }
+
+        /* Playlist e Carta */
+        .content-box { color: #ccc; line-height: 1.6; font-size: 0.9rem; }
+        
+        /* Corações Animados */
+        .heart { position: fixed; font-size: 20px; color: #ff3e6c; animation: float 4s linear infinite; opacity: 0; }
+        @keyframes float { 0% { transform: translateY(100vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <h1>Felipe & Anne</h1>
+    <!-- Título e Contador -->
+    <header style="margin-bottom: 30px;">
+        <h1>Felipe Gabriel ❤️ Anne Melyssa</h1>
+        <div class="timer">
+            <div class="time-box"><span id="days">00</span><label>Dias</label></div>
+            <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
+            <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
+            <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
+        </div>
+    </header>
 
-    <div id="fotos" class="section">
+    <!-- Área da Carta de Amor -->
+    <section class="section">
+        <h3>💌 Carta de Amor</h3>
+        <div class="content-box">
+            <!-- COLOQUE SEU TEXTO AQUI EMBAIXO -->
+            <p>Escreva aqui sua carta apaixonada para a Anne...</p>
+        </div>
+    </section>
+
+    <!-- Área do Álbum -->
+    <section class="section">
         <h3>📸 Nossos Momentos</h3>
         <div class="album-grid">
             <img src="foto1.jpg" alt="Foto">
@@ -41,43 +75,27 @@ Agora, seu site vai ter o álbum, a imagem dos motivos e o contador de tempo. Aq
             <img src="foto9.jpg" alt="Foto">
             <img src="foto10.jpg" alt="Foto">
         </div>
-    </div>
+    </section>
 
-    <div id="motivos" class="section">
-        <h3>💖 100 Motivos para te amar</h3>
-        <img src="motivos.jpg" alt="100 Motivos" class="motivos-img">
-    </div>
-
-    <div id="contador" class="section">
-        <h3>📅 Tempo Juntos</h3>
-        <div class="timer">
-            <div class="time-box"><span id="days">00</span><label>Dias</label></div>
-            <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
-            <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
-            <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
+    <!-- Área da Playlist -->
+    <section class="section">
+        <h3>🎵 Nossa Playlist</h3>
+        <div class="content-box">
+            <p>Músicas que lembram a gente:</p>
+            <!-- COLE SEU EMBED DO SPOTIFY OU LINK AQUI -->
+            <div style="margin-top: 10px; color: #ff3e6c;">[Cole seu player aqui]</div>
         </div>
-    </div>
+    </section>
+
+    <!-- Área dos 100 Motivos -->
+    <section class="section">
+        <h3>❤️ 100 Motivos para te amar</h3>
+        <img src="motivos.jpg" alt="100 Motivos" style="width: 100%; border-radius: 10px; margin-top: 10px;">
+    </section>
 
     <script>
+        // Contador
         const startDate = new Date('2026-05-12T00:00:00');
         function updateCounter() {
             const now = new Date();
             const diff = now - startDate;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-        }
-        setInterval(updateCounter, 1000);
-        updateCounter();
-    </script>
-</body>
-</html>
-```
-
-### O que você precisa fazer para rodar:
-1.  **Subir a foto:** Não esqueça de fazer o upload do arquivo da foto dos motivos para o GitHub com o nome **exato**: `motivos.jpg`.
-2.  **Atualizar o código:** Copie o código acima, cole no seu `index.html` lá no GitHub e salve (**Commit changes**).
-3.  **Aguardar:** Espere uns 2 minutinhos e atualize o link do seu site.
-
-Pronto! Agora o seu presente está ficando realmente profissional e super especial. Ficou alguma dúvida sobre como subir essa nova foto?
