@@ -1,115 +1,512 @@
-``
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Anne Melyssa ❤️</title>
-    <!-- Fonte Romântica -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Segoe+UI:wght@300;400&display=swap" rel="stylesheet">
+    <title>Nosso Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #121214; color: #fff; padding: 20px; text-align: center; overflow-x: hidden; }
-        
-        h1 { font-family: 'Dancing Script', cursive; color: #ff3e6c; margin-bottom: 10px; font-size: 2.2rem; }
-        .section { background: rgba(32, 32, 36, 0.8); padding: 25px; border-radius: 25px; margin-bottom: 25px; border: 1px solid #323238; }
-        h3 { font-family: 'Dancing Script', cursive; color: #ff3e6c; margin-bottom: 15px; font-size: 1.5rem; }
+        :root {
+            --bg-color: #0b0709;
+            --card-bg: #160f13;
+            --accent-pink: #ff65a3;
+            --soft-pink: #fda4af;
+            --text-main: #f3e8ee;
+            --text-muted: #9e8c96;
+        }
 
-        /* Estilo da Carta */
-        .letter-card {
-            background: linear-gradient(145deg, #2a2a2e, #1a1a1e);
-            padding: 30px;
-            border-radius: 20px;
-            border-left: 5px solid #ff3e6c;
-            text-align: left;
-            font-style: italic;
-            line-height: 1.8;
-            color: #fff;
-            font-size: 1.1rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-bottom: 50px;
+        }
+
+        /* Animações suaves */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container Principal */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--accent-pink);
+            margin-bottom: 10px;
         }
 
         /* Contador */
-        .timer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
-        .time-box { background: #1a1a1e; padding: 15px; border-radius: 12px; border: 1px solid #323238; }
-        .time-box span { display: block; font-size: 1.2rem; font-weight: bold; color: #ff3e6c; }
-        .time-box label { font-size: 0.6rem; color: #aaa; text-transform: uppercase; }
+        .counter-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 101, 163, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-        /* Álbum */
-        .album-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .album-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 15px; transition: transform 0.3s; }
-        .album-grid img:hover { transform: scale(1.05); }
+        .counter-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
 
-        /* Interatividade */
-        .btn { background: #ff3e6c; color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; }
-        .btn:hover { background: #ff1e50; transform: scale(1.05); }
-        #reason-text { font-size: 1.2rem; min-height: 80px; display: flex; align-items: center; justify-content: center; color: #ffeff3; padding: 10px; }
+        .grid-counter {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
 
-        /* Corações */
-        .heart { position: fixed; top: -10px; color: #ff3e6c; font-size: 20px; animation: fall 5s linear infinite; pointer-events: none; }
-        @keyframes fall { to { transform: translateY(100vh); } }
+        .counter-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 5px;
+            border-radius: 12px;
+        }
+
+        .counter-number {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent-pink);
+            display: block;
+        }
+
+        .counter-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Carta de Amor */
+        .letter-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .letter-container::before {
+            content: '💌';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            background: var(--bg-color);
+            padding: 0 15px;
+        }
+
+        .letter-content {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            font-style: italic;
+            color: var(--soft-pink);
+            text-align: center;
+        }
+
+        /* Álbum de Fotos */
+        .album-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-pink);
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .photo-holder {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-holder:hover {
+            transform: scale(1.02);
+        }
+
+        /* Espaço reservado para colocar o link das imagens */
+        .photo-holder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            width: 80%;
+        }
+
+        /* 100 Motivos */
+        .motivos-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .motivos-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .motivo-box {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--soft-pink);
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent-pink), #e04d8b);
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 101, 163, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 101, 163, 0.5);
+        }
+
+        /* Chuva de Corações */
+        .heart-particle {
+            position: fixed;
+            color: var(--accent-pink);
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) translateX(var(--scatter-x)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            header h1 { font-size: 2rem; }
+            .counter-number { font-size: 1.4rem; }
+            .letter-container { padding: 25px 20px; }
+            .album-grid { grid-template-columns: 1fr; }
+            .photo-holder { aspect-ratio: 4 / 3; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Felipe & Anne <button onclick="surprise()" style="background:none; border:none; cursor:pointer; font-size: 1.5rem;">🎁</button></h1>
-        <div class="timer">
-            <div class="time-box"><span id="days">00</span><label>Dias</label></div>
-            <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
-            <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
-            <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
-        </div>
-    </header>
+    <div class="container fade-in">
+        
+        <header>
+            <h1>Para Sempre Nós Dois</h1>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Cada segundo ao seu lado importa.</p>
+        </header>
 
-    <section class="section">
-        <h3>💌 Carta de Amor</h3>
-        <div class="letter-card">
-            <p>Meu amor,<br><br>
-            Hoje completamos 2 meses de namoro, e parece que foi ontem que a gente começou essa história. Esses 60 dias ao seu lado passaram voando, mas cada momento foi marcante e especial.<br><br>
-            Nesse tempo, descobri que o meu lugar preferido no mundo é onde você está. Ter você na minha vida trouxe uma cor nova para os meus dias.<br><br>
-            Obrigado por ser minha parceira. Feliz 2 meses, Anne Melyssa. Eu te amo muito!<br><br>
-            Com todo o meu amor,<br><strong>Felipe Gabriel</strong></p>
-        </div>
-    </section>
+        <section class="counter-container">
+            <div class="counter-title">Tempo compartilhado com você</div>
+            <div class="grid-counter">
+                <div class="counter-box">
+                    <span class="counter-number" id="days">00</span>
+                    <span class="counter-label">Dias</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="hours">00</span>
+                    <span class="counter-label">Horas</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="minutes">00</span>
+                    <span class="counter-label">Minutos</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="seconds">00</span>
+                    <span class="counter-label">Segundos</span>
+                </div>
+            </div>
+        </section>
 
-    <section class="section">
-        <h3>📸 Nossos Momentos</h3>
-        <div class="album-grid">
-            <img src="foto1.jpg" alt="Foto"><img src="foto2.jpg" alt="Foto">
-            <img src="foto3.jpg" alt="Foto"><img src="foto4.jpg" alt="Foto">
-            <img src="foto5.jpg" alt="Foto"><img src="foto6.jpg" alt="Foto">
-            <img src="foto7.jpg" alt="Foto"><img src="foto8.jpg" alt="Foto">
-            <img src="foto9.jpg" alt="Foto"><img src="foto10.jpg" alt="Foto">
-        </div>
-    </section>
+        <section class="letter-container">
+            <div class="letter-content">
+                "Desde que você entrou na minha vida, tudo ganhou mais cor e sentido. Este espaço é apenas um pedacinho de tudo o que sinto por você. Obrigado por ser meu porto seguro, meu sorriso diário e o amor da minha vida. Que o nosso 'para sempre' continue sendo escrito com a mesma intensidade do primeiro dia."
+            </div>
+        </section>
 
-    <section class="section">
-        <h3>❤️ Motivos para te amar</h3>
-        <div id="reason-text">Clique no botão abaixo para ver um motivo especial!</div>
-        <button class="btn" onclick="showReason()">Ver Motivo</button>
-    </section>
+        <section>
+            <div class="album-title">Nossas Memórias</div>
+            <div class="album-grid">
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 1<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 2<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 3<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 4<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 5<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 6<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 7<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 8<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 9<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Foto 10<br>(Insira o link no código)</span><img src="" alt=""></div>
+            </div>
+        </section>
+
+        <section class="motivos-container">
+            <div class="motivos-title">Motivos para te amar ❤️</div>
+            <div class="motivo-box" id="motivo-display">Clique abaixo para descobrir um motivo...</div>
+            <button class="btn" onclick="mostrarProximoMotivo()">Próximo Motivo</button>
+        </section>
+
+        <section style="text-align: center; margin-top: 20px;">
+            <button class="btn" style="background: linear-gradient(135deg, #db2777, var(--accent-pink));" onclick="chuvaDeCoracoes()">Clique para uma Surpresa ✨</button>
+        </section>
+
+    </div>
 
     <script>
-        // Lógica dos 100 motivos
+        // --- CONFIGURAÇÃO DO CONTADOR (Data: 12/05/2026) ---
+        const dataInicio = new Date('2026-05-12T00:00:00').getTime();
+
+        function atualizarContador() {
+            const agora = new Date().getTime();
+            const diferenca = agora - dataInicio;
+
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = dias < 10 ? '0' + dias : dias;
+            document.getElementById('hours').innerText = horas < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutos < 10 ? '0' + minutos : minutes;
+            document.getElementById('seconds').innerText = segundos < 10 ? '0' + segundos : segundos;
+        }
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+
+        // --- SISTEMA DE 100 MOTIVOS (Sem repetir até mostrar todos) ---
         const motivos = [
-            "Seu sorriso ilumina o meu dia.", "A forma como você me entende sem eu precisar dizer nada.",
-            "Seu abraço é o meu lugar favorito no mundo.", "Como você cuida de mim com tanto carinho.",
-            "Nossas risadas infinitas juntos.", "Você me faz querer ser uma pessoa melhor todos os dias.",
-            "Seu jeito único de me fazer sentir amado.", "A nossa sintonia é perfeita."
+            "O seu sorriso é o meu lugar favorito no mundo inteiro.",
+            "A forma como você me abraça e faz com que todos os meus problemas simplesmente sumam.",
+            "O seu jeito único e carinhoso de olhar para mim quando estamos em silêncio.",
+            "Sua risada contagiante que é, sem dúvidas, a melhor música para os meus ouvidos.",
+            "Como você me apoia incondicionalmente em cada um dos meus sonhos e projetos.",
+            "O perfume suave que fica em mim depois de cada abraço apertado que a gente se dá.",
+            "Sua paciência infinita e o carinho reconfortante comigo nos dias mais difíceis.",
+            "O fato de você ser a primeiríssima pessoa com quem quero conversar ao acordar.",
+            "Sua inteligência brilhante e a forma madura e bonita como você enxerga o mundo.",
+            "O jeito perfeito com que nossas mãos se encaixam quando caminhamos juntos.",
+            "Sua capacidade incrível de me fazer sorrir mesmo quando estou triste ou cansado.",
+            "A segurança e a paz indescritível que sinto sempre que estou ao seu lado.",
+            "O som da sua voz me chamando pelo apelido que só você sabe falar com tanto carinho.",
+            "Como você se preocupa com os mínimos detalhes para me ver feliz e confortável.",
+            "Seu coração gigante que sempre busca ajudar e entender as pessoas ao seu redor.",
+            "Os nossos momentos de bobeira em que rimos de piadas que só nós dois entendemos.",
+            "A forma como você transforma os dias mais comuns e cinzentos em aventuras memoráveis.",
+            "Sua determinação inspiradora que me faz querer ser uma pessoa melhor todos os dias.",
+            "A maneira como você me escuta com tanta atenção, dando valor a tudo o que eu digo.",
+            "O toque suave do seu cafuné que me desarma e me faz esquecer qualquer estresse.",
+            "Seus conselhos sábios que sempre me mostram o caminho certo quando estou perdido.",
+            "A cumplicidade que temos, onde um simples olhar nosso já diz absolutamente tudo.",
+            "O fato de compartilharmos os mesmos planos para um futuro lindo e cheio de amor.",
+            "A sua mania fofa de falar rápido ou fazer biquinho quando está muito empolgada.",
+            "Como você consegue ser minha melhor amiga, minha confidente e o amor da minha vida.",
+            "A forma charmosa como você se arruma e o quanto eu acho você a mulher mais linda do mundo.",
+            "O respeito mútuo e a leveza com que a gente resolve qualquer desentendimento.",
+            "O seu abraço de surpresa por trás que sempre faz meu coração dar um salto.",
+            "O modo como você aceita todas as minhas manias e me ama exatamente do jeito que sou.",
+            "A energia boa e a luz radiante que você espalha por onde quer que passe.",
+            "Nossas conversas profundas sobre a vida que vão madrugada adentro sem pressa.",
+            "A sensação mágica de borboletas no estômago toda vez que vou te encontrar.",
+            "O carinho e a atenção que você dedica também às pessoas que são importantes para mim.",
+            "Seu beijo que tem o encaixe perfeito e sempre me deixa com gostinho de quero mais.",
+            "A forma como você me faz sentir especial e a pessoa mais sortuda do universo.",
+            "O brilho único dos seus olhos quando você está falando de algo que ama de verdade.",
+            "Como a nossa história parece ter sido escrita à mão por alguém que queria nos ver felizes.",
+            "O seu bom gosto para músicas, filmes e todas as pequenas coisas que compartilhamos.",
+            "O fato de que até o silêncio ao seu lado é confortável e cheio de conexão.",
+            "A sua coragem diante dos desafios da vida, que serve de exemplo diário para mim.",
+            "Sua generosidade genuína que transborda em cada pequeno gesto do dia a dia.",
+            "A forma como você lembra de pequenas coisas que eu disse semanas atrás.",
+            "O calor do seu corpo me aquecendo e me protegendo nas noites mais frias.",
+            "Sua capacidade de enxergar o lado bom das pessoas e das situações difíceis.",
+            "Como você comemora as minhas vitórias com a mesma ou mais alegria do que eu.",
+            "A forma doce como você se despede de mim, fazendo eu já sentir saudades na mesma hora.",
+            "O seu cheiro doce que invade o ambiente e me avisa que você acabou de chegar.",
+            "A facilidade com que a gente consegue passar horas rindo de absolutamente nada.",
+            "Sua sensibilidade para perceber quando não estou bem e seu cuidado imediato.",
+            "O quanto você fica fofa e irresistível quando está com sono ou acabou de acordar.",
+            "A certeza absoluta de que, não importa o que aconteça, enfrentaremos tudo juntos.",
+            "Como você me ensina a ser mais paciente, maduro e amoroso com suas atitudes.",
+            "O carinho com que você segura meu rosto quando vai me dar um beijo de verdade.",
+            "Sua autenticidade incrível, sem medo de ser você mesma em qualquer situação.",
+            "Os nossos apelidos carinhosos que criamos ao longo de toda a nossa caminhada.",
+            "A forma como você torce por mim e me dá forças nos momentos de insegurança.",
+            "Sua paixão pela vida e a vontade constante de aprender coisas novas.",
+            "A forma como você respeita o meu espaço e o quanto isso fortalece nossa relação.",
+            "Sua risada de porquinho ou aquele sorriso tímido que você tenta esconder sem sucesso.",
+            "A delícia que é planejar viagens, passeios ou apenas um final de semana preguiçoso com você.",
+            "Como você consegue me acalmar apenas segurando a minha mão bem forte.",
+            "Sua força interior gigante disfarçada sob esse seu jeito delicado e meigo.",
+            "O fato de você tornar qualquer refeição simples em um banquete romântico.",
+            "As piadas internas que só nós compreendemos e que nos fazem rir em público do nada.",
+            "Sua dedicação constante em fazer o nosso relacionamento crescer e ser sempre saudável.",
+            "O brilho que você traz para a minha vida e que me faz enxergar tudo com mais esperança.",
+            "O jeito que você ajeita meu cabelo ou minha roupa com carinho e cuidado de namorada.",
+            "Sua honestidade e transparência em cada palavra e atitude que tem comigo.",
+            "A forma como o tempo parece voar quando estamos juntos e rastejar quando estamos longe.",
+            "O seu abraço que funciona como um carregador de bateria para a minha alma.",
+            "A facilidade com que você me faz esquecer do resto do mundo quando está por perto.",
+            "A sua voz suave sussurrando 'eu te amo' bem baixinho no meu ouvido.",
+            "Como você consegue ser extremamente madura e, ao mesmo tempo, ter uma alma jovem e divertida.",
+            "O orgulho imenso que sinto no peito toda vez que apresento você como minha namorada.",
+            "Seus dotes e talentos únicos que me deixam constantemente admirado e encantado.",
+            "O fato de que cada mensagem sua no meu celular faz meu dia melhorar instantaneamente.",
+            "Sua empatia incrível e a sensibilidade de se colocar no lugar do outro sempre.",
+            "O modo como você cuida de mim quando estou doente ou simplesmente cansado.",
+            "A nossa sintonia perfeita na hora de escolher o que comer ou o que assistir.",
+            "O seu olhar de cumplicidade que me diz 'estou com você' mesmo no meio de uma multidão.",
+            "A forma linda como você valoriza a família, os amigos e as conexões reais da vida.",
+            "O seu apoio inabalável nas decisões difíceis que preciso tomar ao longo do caminho.",
+            "Como você consegue iluminar qualquer ambiente em que entra apenas com a sua presença.",
+            "A sua determinação em resolver qualquer pequeno problema conversando, sem drama.",
+            "A nossa compatibilidade de humor, dividindo o mesmo estilo de piadas e brincarei.",
+            "O calor e o aconchego de dormir de conchinha bem coladinho com você.",
+            "Sua capacidade de me surpreender positivamente mesmo depois de tanto tempo juntos.",
+            "A forma carinhosa como você me elogia e me faz sentir o homem mais valorizado.",
+            "Sua espontaneidade fofa e os sustos engraçados que você me dá de vez em quando.",
+            "O fato de eu conseguir ser 100% eu mesmo ao seu lado, sem máscaras ou julgamentos.",
+            "A doçura com que você fala sobre o nosso futuro e os filhos ou pets que teremos.",
+            "A sua persistência bonita de não desistir daquilo em que você realmente acredita.",
+            "Os arrepios bons que sinto toda vez que seu dedo desliza de leve pela minha pele.",
+            "Sua maturidade para entender minhas fases e respeitar meus momentos de silêncio.",
+            "O fato de que, entre tantos caminhos no mundo, o meu escolheu se cruzar com o seu.",
+            "A sua torcida sincera para que eu cresça profissionalmente e como ser humano.",
+            "A sensação deliciosa de paz que sinto ao deitar no seu colo no fim do dia.",
+            "A certeza absoluta de que você é a minha melhor escolha de todos os dias.",
+            "O seu amor puro, leve, maduro e transformador que mudou a minha vida para sempre.",
+            "O simples fato de você existir e escolher compartilhar a sua vida incrível comigo."
         ];
-        function showReason() {
-            const r = motivos[Math.floor(Math.random() * motivos.length)];
-            document.getElementById('reason-text').innerText = r;
+
+        let motivosEmbaralhados = [];
+
+        function embaralharMotivos() {
+            motivosEmbaralhados = [...motivos].sort(() => Math.random() - 0.5);
         }
 
-        // Botão Surpresa
-        function surprise() {
-            for(let i=0; i<30; i++) createHeart(true);
+        function mostrarProximoMotivo() {
+            if (motivosEmbaralhados.length === 0) {
+                embaralharMotivos();
+                alert("Você viu todos os motivos! Recomeçando a lista para você relembrar... ❤️");
+            }
+            const display = document.getElementById('motivo-display');
+            display.style.opacity = 0;
+            
+            setTimeout(() => {
+                display.innerText = "Motivo nº " + (101 - motivosEmbaralhados.length) + ": " + motivosEmbaralhados.pop();
+                display.style.opacity = 1;
+            }, 200);
         }
 
-        // Chuva de Corações
-        function createHeart(isFast = false) {
-            const h = document.createElement('div');
-            h.innerHTML = '❤️'; h.className = 'heart';
-            h.style.left = Math.random() * 100 + 'vw';
-            h.style.animationDuration = isFast ? (Math.random() * 1 + 1 + 's') : (Math.random() * 3 +
+        // --- CHUVA DE CORAÇÕES ---
+        function chuvaDeCoracoes() {
+            const quantidade = 50;
+            const coracoes = ['❤️', '💖', '💗', '💕', '🌸'];
+            
+            for (let i = 0; i < quantidade; i++) {
+                setTimeout(() => {
+                    const elemento = document.createElement('div');
+                    elemento.classList.add('heart-particle');
+                    elemento.innerText = coracoes[Math.floor(Math.random() * coracoes.length)];
+                    
+                    // Posição inicial horizontal aleatória
+                    elemento.style.left = Math.random() * 100 + 'vw';
+                    // Velocidade e tamanho aleatórios
+                    const duracao = Math.random() * 2 + 2; // entre 2s e 4s
+                    elemento.style.animationDuration = duracao + 's';
+                    elemento.style.fontSize = Math.random() * 1.5 + 1 + 'rem';
+                    
+                    // Dispersão lateral aleatória durante a queda
+                    const scatter = (Math.random() * 200 - 100) + 'px';
+                    elemento.style.setProperty('--scatter-x', scatter);
+                    
+                    document.body.appendChild(elemento);
+                    
+                    // Remove do DOM após a animação acabar
+                    setTimeout(() => {
+                        elemento.remove();
+                    }, duracao * 1000);
+                }, i * 60); // Atraso cascata para soltar um por um rapidamente
+            }
+        }
+        
+        // Inicializa a primeira embaralhada
+        embaralharMotivos();
+    </script>
+</body>
+</html>
