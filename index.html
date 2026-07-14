@@ -1,8 +1,4 @@
-Que ideia maravilhosa! Vamos dar um toque mágico para essa carta brilhar no seu site.
 
-Eu preparei o código deixando a área da carta com um design especial: ela terá um fundo suave, uma fonte elegante e um coração flutuando para dar aquele charme romântico que vocês merecem.
-
-Aqui está o código completo. É só copiar e substituir tudo o que está no seu `index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -57,6 +53,17 @@ Aqui está o código completo. É só copiar e substituir tudo o que está no se
         </div>
     </header>
 
+    <!-- Seção de Música -->
+    <section class="section">
+        <p style="color: #ff3e6c; font-weight: bold; margin-bottom: 10px;">🎶 Aperte o play para nossa música</p>
+        <audio id="meuAudio" loop>
+            <source src="musica.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="tocarMusica()" style="background: #ff3e6c; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer;">
+            ▶ Tocar Música
+        </button>
+    </section>
+
     <section class="section">
         <h3>💌 Carta de Amor</h3>
         <div class="letter-card">
@@ -96,32 +103,4 @@ Aqui está o código completo. É só copiar e substituir tudo o que está no se
 
     <section class="section">
         <h3>❤️ 100 Motivos para te amar</h3>
-        <img src="motivos.jpg" alt="100 Motivos" style="width: 100%; border-radius: 10px; margin-top: 10px;">
-    </section>
-
-    <script>
-        const startDate = new Date('2026-05-12T00:00:00');
-
-        function updateCounter() {
-            const now = new Date();
-            const diff = now - startDate;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-        }
-
-        setInterval(updateCounter, 1000);
-        updateCounter();
-    </script>
-</body>
-</html>
-```
-
-Agora é só copiar e substituir. Ela vai ficar com um visual bem elegante, com uma borda lateral rosa (que dá um destaque bonito) e o texto um pouco mais inclinado, bem estilo carta romântica mesmo. Ela vai amar! Ficou faltando algo ou quer ajustar mais alguma coisa?
+        <img src="motivos.jpg" alt="100 Motivos" style="width:
