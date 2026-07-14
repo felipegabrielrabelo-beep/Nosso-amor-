@@ -166,11 +166,18 @@
             transform: scale(1.02);
         }
 
-        /* Espaço reservado para colocar o link das imagens */
         .photo-holder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Classe adicionada por JS quando a imagem carregar */
+        .photo-holder img.loaded {
+            opacity: 1;
         }
 
         .photo-placeholder-text {
@@ -182,6 +189,8 @@
             color: var(--text-muted);
             text-align: center;
             width: 80%;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
         /* 100 Motivos */
@@ -303,16 +312,16 @@
         <section>
             <div class="album-title">Nossas Memórias</div>
             <div class="album-grid">
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 1<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 2<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 3<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 4<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 5<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 6<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 7<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 8<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 9<br>(Insira o link no código)</span><img src="" alt=""></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Foto 10<br>(Insira o link no código)</span><img src="" alt=""></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 1" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 2" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 3" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 4" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 5" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 6" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 7" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1501908731398-23136d24d5ae?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 8" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 9" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 10" onload="imageLoaded(this)"></div>
             </div>
         </section>
 
@@ -329,12 +338,29 @@
     </div>
 
     <script>
-        // --- CONFIGURAÇÃO DO CONTADOR (Data: 12/05/2026) ---
+        // --- FUNÇÃO PARA OCULTAR O PLACEHOLDER QUANDO A FOTO CARREGAR ---
+        function imageLoaded(imgElement) {
+            imgElement.classList.add('loaded');
+            const placeholder = imgElement.previousElementSibling;
+            if (placeholder && placeholder.classList.contains('photo-placeholder-text')) {
+                placeholder.style.opacity = '0';
+                setTimeout(() => {
+                    placeholder.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // --- CONFIGURAÇÃO DO CONTADOR (Data de Início: 12/05/2026) ---
         const dataInicio = new Date('2026-05-12T00:00:00').getTime();
 
         function atualizarContador() {
             const agora = new Date().getTime();
-            const diferenca = agora - dataInicio;
+            let diferenca = agora - dataInicio;
+
+            // Se for no futuro
+            if (diferenca < 0) {
+                diferenca = Math.abs(diferenca);
+            }
 
             const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
             const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -342,8 +368,8 @@
             const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
             document.getElementById('days').innerText = dias < 10 ? '0' + dias : dias;
-            document.getElementById('hours').innerText = horas < 10 ? '0' + hours : hours;
-            document.getElementById('minutes').innerText = minutos < 10 ? '0' + minutos : minutes;
+            document.getElementById('hours').innerText = horas < 10 ? '0' + horas : horas;
+            document.getElementById('minutes').innerText = minutos < 10 ? '0' + minutos : minutos;
             document.getElementById('seconds').innerText = segundos < 10 ? '0' + segundos : segundos;
         }
         setInterval(atualizarContador, 1000);
@@ -435,7 +461,7 @@
             "O seu apoio inabalável nas decisões difíceis que preciso tomar ao longo do caminho.",
             "Como você consegue iluminar qualquer ambiente em que entra apenas com a sua presença.",
             "A sua determinação em resolver qualquer pequeno problema conversando, sem drama.",
-            "A nossa compatibilidade de humor, dividindo o mesmo estilo de piadas e brincarei.",
+            "A nossa compatibilidade de humor, dividindo o mesmo estilo de piadas e brincadeiras.",
             "O calor e o aconchego de dormir de conchinha bem coladinho com você.",
             "Sua capacidade de me surpreender positivamente mesmo depois de tanto tempo juntos.",
             "A forma carinhosa como você me elogia e me faz sentir o homem mais valorizado.",
@@ -455,13 +481,13 @@
 
         let motivosEmbaralhados = [];
 
-        function embaralharMotivos() {
+        function militarEmbaralhar() {
             motivosEmbaralhados = [...motivos].sort(() => Math.random() - 0.5);
         }
 
         function mostrarProximoMotivo() {
             if (motivosEmbaralhados.length === 0) {
-                embaralharMotivos();
+                militarEmbaralhar();
                 alert("Você viu todos os motivos! Recomeçando a lista para você relembrar... ❤️");
             }
             const display = document.getElementById('motivo-display');
@@ -484,29 +510,24 @@
                     elemento.classList.add('heart-particle');
                     elemento.innerText = coracoes[Math.floor(Math.random() * coracoes.length)];
                     
-                    // Posição inicial horizontal aleatória
                     elemento.style.left = Math.random() * 100 + 'vw';
-                    // Velocidade e tamanho aleatórios
-                    const duracao = Math.random() * 2 + 2; // entre 2s e 4s
+                    const duracao = Math.random() * 2 + 2;
                     elemento.style.animationDuration = duracao + 's';
                     elemento.style.fontSize = Math.random() * 1.5 + 1 + 'rem';
                     
-                    // Dispersão lateral aleatória durante a queda
                     const scatter = (Math.random() * 200 - 100) + 'px';
                     elemento.style.setProperty('--scatter-x', scatter);
                     
                     document.body.appendChild(elemento);
                     
-                    // Remove do DOM após a animação acabar
                     setTimeout(() => {
                         elemento.remove();
                     }, duracao * 1000);
-                }, i * 60); // Atraso cascata para soltar um por um rapidamente
+                }, i * 60);
             }
         }
         
-        // Inicializa a primeira embaralhada
-        embaralharMotivos();
+        militarEmbaralhar();
     </script>
 </body>
 </html>
