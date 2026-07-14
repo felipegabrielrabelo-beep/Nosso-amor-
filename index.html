@@ -1,8 +1,3 @@
-Isso vai ficar incrível! Como você quer que pareça um aplicativo organizado, vamos estruturar tudo com "cards" (cartões) bem definidos.
-
-Vou deixar tudo em um único arquivo `index.html` para facilitar para você. Assim, você só precisa copiar, colar e depois apenas substituir os textos e links dentro das áreas indicadas.
-
-Aqui está o código completo:
 
 ```html
 <!DOCTYPE html>
@@ -12,9 +7,8 @@ Aqui está o código completo:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Anne Melyssa</title>
     <style>
-        /* Estilo Geral */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #121214; color: #fff; padding: 20px; text-align: center; overflow-x: hidden; }
+        body { background-color: #121214; color: #fff; padding: 20px; text-align: center; }
         
         h1 { color: #ff3e6c; margin-bottom: 5px; font-size: 1.6rem; }
         .section { background: #202024; padding: 20px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
@@ -30,17 +24,12 @@ Aqui está o código completo:
         .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .album-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; border: 2px solid #323238; }
 
-        /* Playlist e Carta */
+        /* Estilo Geral */
         .content-box { color: #ccc; line-height: 1.6; font-size: 0.9rem; }
-        
-        /* Corações Animados */
-        .heart { position: fixed; font-size: 20px; color: #ff3e6c; animation: float 4s linear infinite; opacity: 0; }
-        @keyframes float { 0% { transform: translateY(100vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <!-- Título e Contador -->
     <header style="margin-bottom: 30px;">
         <h1>Felipe Gabriel ❤️ Anne Melyssa</h1>
         <div class="timer">
@@ -51,16 +40,13 @@ Aqui está o código completo:
         </div>
     </header>
 
-    <!-- Área da Carta de Amor -->
     <section class="section">
         <h3>💌 Carta de Amor</h3>
         <div class="content-box">
-            <!-- COLOQUE SEU TEXTO AQUI EMBAIXO -->
             <p>Escreva aqui sua carta apaixonada para a Anne...</p>
         </div>
     </section>
 
-    <!-- Área do Álbum -->
     <section class="section">
         <h3>📸 Nossos Momentos</h3>
         <div class="album-grid">
@@ -77,25 +63,40 @@ Aqui está o código completo:
         </div>
     </section>
 
-    <!-- Área da Playlist -->
     <section class="section">
         <h3>🎵 Nossa Playlist</h3>
         <div class="content-box">
-            <p>Músicas que lembram a gente:</p>
-            <!-- COLE SEU EMBED DO SPOTIFY OU LINK AQUI -->
-            <div style="margin-top: 10px; color: #ff3e6c;">[Cole seu player aqui]</div>
+            <p>Cole o código de incorporação do Spotify aqui abaixo:</p>
+            <div style="margin-top: 10px;">[Cole o Player aqui]</div>
         </div>
     </section>
 
-    <!-- Área dos 100 Motivos -->
     <section class="section">
         <h3>❤️ 100 Motivos para te amar</h3>
         <img src="motivos.jpg" alt="100 Motivos" style="width: 100%; border-radius: 10px; margin-top: 10px;">
     </section>
 
     <script>
-        // Contador
         const startDate = new Date('2026-05-12T00:00:00');
+
         function updateCounter() {
             const now = new Date();
             const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCounter, 1000);
+        updateCounter();
+    </script>
+</body>
+</html>
+```
