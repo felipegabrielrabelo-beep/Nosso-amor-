@@ -1,30 +1,53 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Anne Melyssa</title>
+    <title>Para Anne Melyssa ❤️</title>
+    <!-- Fonte Romântica -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Segoe+UI:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #121214; color: #fff; padding: 20px; text-align: center; }
-        h1 { color: #ff3e6c; margin-bottom: 5px; font-size: 1.6rem; }
-        .section { background: #202024; padding: 20px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        h3 { color: #ff3e6c; margin-bottom: 15px; border-bottom: 1px solid #323238; padding-bottom: 10px; }
-        .letter-card { background: linear-gradient(145deg, #2a2a2e, #1e1e22); padding: 25px; border-radius: 15px; border-left: 5px solid #ff3e6c; text-align: left; font-style: italic; line-height: 1.8; color: #ffeff3; }
-        .heart-icon { color: #ff3e6c; font-size: 1.5rem; display: block; text-align: center; margin-bottom: 10px; }
-        .timer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 10px; }
-        .time-box { background: #121214; padding: 10px; border-radius: 8px; }
-        .time-box span { display: block; font-size: 1rem; font-weight: bold; color: #ff3e6c; }
-        .time-box label { font-size: 0.6rem; color: #a8a8b3; }
-        .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .album-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; border: 2px solid #323238; }
-        .content-box { color: #ccc; line-height: 1.6; font-size: 0.9rem; }
+        body { background-color: #121214; color: #fff; padding: 20px; text-align: center; overflow-x: hidden; }
+        
+        h1 { font-family: 'Dancing Script', cursive; color: #ff3e6c; margin-bottom: 10px; font-size: 2.2rem; }
+        .section { background: rgba(32, 32, 36, 0.8); padding: 25px; border-radius: 25px; margin-bottom: 25px; border: 1px solid #323238; }
+        h3 { font-family: 'Dancing Script', cursive; color: #ff3e6c; margin-bottom: 15px; font-size: 1.5rem; }
+
+        /* Estilo da Carta */
+        .letter-card {
+            background: linear-gradient(145deg, #2a2a2e, #1a1a1e);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid #ff3e6c;
+            text-align: left;
+            font-style: italic;
+            line-height: 1.8;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        /* Contador */
+        .timer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+        .time-box { background: #1a1a1e; padding: 15px; border-radius: 12px; border: 1px solid #323238; }
+        .time-box span { display: block; font-size: 1.2rem; font-weight: bold; color: #ff3e6c; }
+        .time-box label { font-size: 0.6rem; color: #aaa; text-transform: uppercase; }
+
+        /* Álbum */
+        .album-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .album-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 15px; transition: transform 0.3s; }
+        .album-grid img:hover { transform: scale(1.05); }
+
+        /* Corações Caindo */
+        .heart { position: fixed; top: -10px; color: #ff3e6c; font-size: 20px; animation: fall 5s linear infinite; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(100vh); } }
     </style>
 </head>
 <body>
 
-    <header style="margin-bottom: 30px;">
-        <h1>Felipe Gabriel ❤️ Anne Melyssa</h1>
+    <header>
+        <h1>Felipe & Anne</h1>
         <div class="timer">
             <div class="time-box"><span id="days">00</span><label>Dias</label></div>
             <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
@@ -36,12 +59,10 @@
     <section class="section">
         <h3>💌 Carta de Amor</h3>
         <div class="letter-card">
-            <span class="heart-icon">❤️</span>
             <p>Meu amor,<br><br>
             Hoje completamos 2 meses de namoro, e parece que foi ontem que a gente começou essa história. Esses 60 dias ao seu lado passaram voando, mas cada momento foi marcante e especial.<br><br>
-            Nesse tempo, descobri que o meu lugar preferido no mundo é onde você está. Seu sorriso, seu jeito de cuidar de mim e a forma como você faz meu dia ser mais leve são as coisas que eu mais amo em você. Ter você na minha vida trouxe uma cor nova para os meus dias.<br><br>
-            Obrigado por ser minha parceira, por cada conversa e cada risada. Eu mal posso esperar por tudo o que a gente ainda vai viver.<br><br>
-            Feliz 2 meses, Anne Melyssa. Eu te amo muito!<br><br>
+            Nesse tempo, descobri que o meu lugar preferido no mundo é onde você está. Ter você na minha vida trouxe uma cor nova para os meus dias.<br><br>
+            Obrigado por ser minha parceira. Feliz 2 meses, Anne Melyssa. Eu te amo muito!<br><br>
             Com todo o meu amor,<br><strong>Felipe Gabriel</strong></p>
         </div>
     </section>
@@ -49,46 +70,49 @@
     <section class="section">
         <h3>📸 Nossos Momentos</h3>
         <div class="album-grid">
-            <img src="foto1.jpg" alt="Foto">
-            <img src="foto2.jpg" alt="Foto">
-            <img src="foto3.jpg" alt="Foto">
-            <img src="foto4.jpg" alt="Foto">
-            <img src="foto5.jpg" alt="Foto">
-            <img src="foto6.jpg" alt="Foto">
-            <img src="foto7.jpg" alt="Foto">
-            <img src="foto8.jpg" alt="Foto">
-            <img src="foto9.jpg" alt="Foto">
-            <img src="foto10.jpg" alt="Foto">
+            <img src="foto1.jpg" alt="Foto"><img src="foto2.jpg" alt="Foto">
+            <img src="foto3.jpg" alt="Foto"><img src="foto4.jpg" alt="Foto">
+            <img src="foto5.jpg" alt="Foto"><img src="foto6.jpg" alt="Foto">
         </div>
     </section>
 
     <section class="section">
-        <h3>🎵 Nossa Playlist</h3>
-        <div class="content-box">
-            <p>De Janeiro a Janeiro:</p>
-            <div style="margin-top: 10px;">
-                <iframe width="100%" height="200" src="https://www.youtube.com/embed/jZ_y-N57VjU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+        <h3>🎵 Nossa Música</h3>
+        <div style="margin-top: 10px;">
+            <!-- Link de incorporação mais estável -->
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/g84t9k33H4M" frameborder="0" allowfullscreen></iframe>
         </div>
     </section>
 
     <section class="section">
         <h3>❤️ 100 Motivos para te amar</h3>
-        <img src="motivos.jpg" alt="100 Motivos" style="width: 100%; border-radius: 10px; margin-top: 10px;">
+        <img src="motivos.jpg" alt="100 Motivos" style="width: 100%; border-radius: 15px;">
     </section>
 
     <script>
-        const startDate = new Date('2026-05-12T00:00:00');
-        function updateCounter() {
-            const now = new Date();
-            const diff = now - startDate;
-            document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-            document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+        // Animação de corações
+        function createHeart() {
+            const h = document.createElement('div');
+            h.innerHTML = '❤️'; h.className = 'heart';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
         }
-        setInterval(updateCounter, 1000);
-        updateCounter();
+        setInterval(createHeart, 800);
+
+        // Contador
+        const startDate = new Date('2026-05-12T00:00:00');
+        function update() {
+            const d = new Date() - startDate;
+            document.getElementById('days').innerText = String(Math.floor(d / (1000*60*60*24))).padStart(2, '0');
+            document.getElementById('hours').innerText = String(Math.floor((d % (1000*60*60*24)) / (1000*60*60))).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(Math.floor((d % (1000*60*60)) / (1000*60))).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(Math.floor((d % (1000*60)) / 1000)).padStart(2, '0');
+        }
+        setInterval(update, 1000);
+        update();
     </script>
 </body>
 </html>
+```
