@@ -312,16 +312,16 @@
         <section>
             <div class="album-title">Nossas Memórias</div>
             <div class="album-grid">
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 1" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 2" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 3" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 4" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 5" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 6" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 7" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1501908731398-23136d24d5ae?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 8" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 9" onload="imageLoaded(this)"></div>
-                <div class="photo-holder"><span class="photo-placeholder-text">Carregando...</span><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=600&auto=format&fit=crop" alt="Nossa Foto 10" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto1.jpg na pasta</span><img src="foto1.jpg" alt="Nossa Foto 1" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto2.jpg na pasta</span><img src="foto2.jpg" alt="Nossa Foto 2" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto3.jpg na pasta</span><img src="foto3.jpg" alt="Nossa Foto 3" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto4.jpg na pasta</span><img src="foto4.jpg" alt="Nossa Foto 4" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto5.jpg na pasta</span><img src="foto5.jpg" alt="Nossa Foto 5" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto6.jpg na pasta</span><img src="foto6.jpg" alt="Nossa Foto 6" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto7.jpg na pasta</span><img src="foto7.jpg" alt="Nossa Foto 7" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto8.jpg na pasta</span><img src="foto8.jpg" alt="Nossa Foto 8" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto9.jpg na pasta</span><img src="foto9.jpg" alt="Nossa Foto 9" onload="imageLoaded(this)"></div>
+                <div class="photo-holder"><span class="photo-placeholder-text">Adicione a foto10.jpg na pasta</span><img src="foto10.jpg" alt="Nossa Foto 10" onload="imageLoaded(this)"></div>
             </div>
         </section>
 
@@ -350,6 +350,16 @@
             }
         }
 
+        // Se uma imagem falhar por não existir ainda na pasta, o texto do placeholder continua aparecendo bonitinho
+        document.querySelectorAll('.photo-holder img').forEach(img => {
+            img.onerror = function() {
+                const placeholder = this.previousElementSibling;
+                if (placeholder) {
+                    placeholder.innerText = this.getAttribute('src') + " ausente";
+                }
+            };
+        });
+
         // --- CONFIGURAÇÃO DO CONTADOR (Data de Início: 12/05/2026) ---
         const dataInicio = new Date('2026-05-12T00:00:00').getTime();
 
@@ -368,14 +378,14 @@
             const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
             document.getElementById('days').innerText = dias < 10 ? '0' + dias : dias;
-            document.getElementById('hours').innerText = horas < 10 ? '0' + horas : horas;
-            document.getElementById('minutes').innerText = minutos < 10 ? '0' + minutos : minutos;
+            document.getElementById('hours').innerText = horas < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
             document.getElementById('seconds').innerText = segundos < 10 ? '0' + segundos : segundos;
         }
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // --- SISTEMA DE 100 MOTIVOS (Sem repetir até mostrar todos) ---
+        // --- SISTEMA DE 100 MOTIVOS ---
         const motivos = [
             "O seu sorriso é o meu lugar favorito no mundo inteiro.",
             "A forma como você me abraça e faz com que todos os meus problemas simplesmente sumam.",
