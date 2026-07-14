@@ -1,5 +1,4 @@
-
-
+``
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -40,7 +39,12 @@
         .album-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 15px; transition: transform 0.3s; }
         .album-grid img:hover { transform: scale(1.05); }
 
-        /* Corações Caindo */
+        /* Interatividade */
+        .btn { background: #ff3e6c; color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; }
+        .btn:hover { background: #ff1e50; transform: scale(1.05); }
+        #reason-text { font-size: 1.2rem; min-height: 80px; display: flex; align-items: center; justify-content: center; color: #ffeff3; padding: 10px; }
+
+        /* Corações */
         .heart { position: fixed; top: -10px; color: #ff3e6c; font-size: 20px; animation: fall 5s linear infinite; pointer-events: none; }
         @keyframes fall { to { transform: translateY(100vh); } }
     </style>
@@ -48,7 +52,7 @@
 <body>
 
     <header>
-        <h1>Felipe & Anne</h1>
+        <h1>Felipe & Anne <button onclick="surprise()" style="background:none; border:none; cursor:pointer; font-size: 1.5rem;">🎁</button></h1>
         <div class="timer">
             <div class="time-box"><span id="days">00</span><label>Dias</label></div>
             <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
@@ -80,41 +84,32 @@
     </section>
 
     <section class="section">
-        <h3>❤️ 100 Motivos para te amar</h3>
-        <img src="motivos.jpg" alt="100 Motivos" style="width: 100%; border-radius: 15px;">
+        <h3>❤️ Motivos para te amar</h3>
+        <div id="reason-text">Clique no botão abaixo para ver um motivo especial!</div>
+        <button class="btn" onclick="showReason()">Ver Motivo</button>
     </section>
 
     <script>
-        // Animação de corações
-        function createHeart() {
+        // Lógica dos 100 motivos
+        const motivos = [
+            "Seu sorriso ilumina o meu dia.", "A forma como você me entende sem eu precisar dizer nada.",
+            "Seu abraço é o meu lugar favorito no mundo.", "Como você cuida de mim com tanto carinho.",
+            "Nossas risadas infinitas juntos.", "Você me faz querer ser uma pessoa melhor todos os dias.",
+            "Seu jeito único de me fazer sentir amado.", "A nossa sintonia é perfeita."
+        ];
+        function showReason() {
+            const r = motivos[Math.floor(Math.random() * motivos.length)];
+            document.getElementById('reason-text').innerText = r;
+        }
+
+        // Botão Surpresa
+        function surprise() {
+            for(let i=0; i<30; i++) createHeart(true);
+        }
+
+        // Chuva de Corações
+        function createHeart(isFast = false) {
             const h = document.createElement('div');
             h.innerHTML = '❤️'; h.className = 'heart';
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
-        }
-        setInterval(createHeart, 800);
-
-        // Contador ajustado
-        const startDate = new Date('2026-05-12T00:00:00');
-        function update() {
-            const now = new Date();
-            const d = now - startDate;
-            
-            const days = Math.floor(d / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((d % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-        }
-        setInterval(update, 1000);
-        update();
-    </script>
-</body>
-</html>
-```
+            h.style.animationDuration = isFast ? (Math.random() * 1 + 1 + 's') : (Math.random() * 3 +
