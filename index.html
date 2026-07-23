@@ -1,616 +1,674 @@
-Perfeito — já ajustei e deixei o código sem os erros que encontrei, com algumas melhorias (lazy-loading das imagens, correção da variável de minutos, acessibilidade básica e valor padrão da data alinhado com 12/05/2026). Cole esse arquivo inteiro no seu repo e substitua o anterior. Se quiser, eu posso depois adicionar lightbox nas fotos, player customizado ou comportamento diferente quando a data de início estiver no futuro — me diz! 😄💖
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosso Amor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <title>Felipe Gabriel ❤️ Anne Melyssa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0709;
-            --card-bg: #160f13;
-            --accent-pink: #ff65a3;
-            --soft-pink: #fda4af;
-            --text-main: #f3e8ee;
-            --text-muted: #9e8c96;
+            --primary: #e63946;
+            --primary-dark: #b81d24;
+            --accent: #ff4d6d;
+            --bg-gradient: linear-gradient(135deg, #0d0208 0%, #1a0814 35%, #2b091e 70%, #0d0208 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 77, 109, 0.2);
+            --text-light: #fff5f7;
+            --text-muted: #d8b4c8;
+            --gold: #ffb703;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-light);
             overflow-x: hidden;
-            padding-bottom: 50px;
+            position: relative;
+            line-height: 1.6;
         }
 
-        /* Animações suaves */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease forwards;
+        /* Canvas Background */
+        #heartCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Container Principal */
+        /* Container */
         .container {
-            width: 90%;
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding-top: 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
 
+        /* Header / Hero Section */
         header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 40px;
+            padding: 40px 20px;
+            position: relative;
         }
 
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--accent-pink);
+        .couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: #ff758f;
+            text-shadow: 0 0 20px rgba(255, 117, 143, 0.6), 0 0 40px rgba(230, 57, 70, 0.4);
             margin-bottom: 10px;
+            animation: pulseGlow 3s infinite alternate;
         }
 
-        /* Ajuste do Contador */
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 15px rgba(255, 117, 143, 0.5); transform: scale(1); }
+            100% { text-shadow: 0 0 30px rgba(255, 117, 143, 0.9), 0 0 50px rgba(230, 57, 70, 0.7); transform: scale(1.02); }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        /* Counter Box */
         .counter-container {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 101, 163, 0.2);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: rgba(20, 10, 25, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,77,109,0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
         }
 
         .counter-title {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            color: #ffb3c1;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
+            letter-spacing: 1.5px;
         }
 
-        .grid-counter {
+        .timer-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
         }
 
-        .counter-box {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 15px 5px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
+        .time-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px 10px;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
         }
 
-        .counter-number {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--accent-pink);
+        .time-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .time-number {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #fff;
             display: block;
+            font-family: 'Caveat', cursive;
         }
 
-        .counter-label {
+        .time-label {
             font-size: 0.75rem;
             color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Ajuste de Data Interativo */
-        .date-adjuster {
-            margin-top: 15px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        .date-adjuster input {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,101,163,0.3);
-            color: var(--text-main);
-            border-radius: 5px;
-            padding: 3px 8px;
-            font-size: 0.8rem;
-            outline: none;
-            cursor: pointer;
+        /* Section Styling */
+        section {
+            padding: 80px 0;
         }
 
-        /* Carta de Amor */
-        .letter-container {
-            background: var(--card-bg);
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: #ff758f;
+            margin-bottom: 10px;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 0 auto;
+        }
+
+        /* Love Letter Section */
+        .letter-card {
+            background: rgba(255, 245, 247, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 35px;
-            margin-bottom: 40px;
+            padding: 40px;
+            max-width: 850px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .letter-container::before {
+        .letter-card::before {
             content: '💌';
+            font-size: 2.5rem;
             position: absolute;
-            top: -20px;
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 2rem;
-            background: var(--bg-color);
+            background: #1a0814;
             padding: 0 15px;
+            border-radius: 50%;
         }
 
-        .letter-content {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            line-height: 1.8;
-            font-style: italic;
-            color: var(--soft-pink);
-            text-align: center;
+        .letter-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #f3e8ee;
+            white-space: pre-line;
+            text-align: justify;
         }
 
-        /* Álbum de Fotos Ajustado */
-        .album-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--accent-pink);
+        .letter-signature {
+            margin-top: 30px;
+            text-align: right;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--accent);
         }
 
-        .album-grid {
+        /* Gallery Section */
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
         }
 
-        .photo-holder {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
+        .photo-card {
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            aspect-ratio: 4 / 5;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
         }
 
-        .photo-holder:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(255, 101, 163, 0.2);
-            border-color: rgba(255, 101, 163, 0.3);
+        .photo-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
         }
 
-        .photo-holder img {
+        .photo-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: transform 0.5s ease;
         }
 
-        /* Classe aplicada via JS quando a imagem carregar */
-        .photo-holder img.loaded {
-            opacity: 1;
+        .photo-card:hover img {
+            transform: scale(1.08);
         }
 
-        .photo-placeholder-text {
+        .photo-caption {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-align: center;
-            width: 85%;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            line-height: 1.4;
-        }
-
-        /* 100 Motivos */
-        .motivos-container {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .motivos-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .motivo-box {
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            font-family: 'Playfair Display', serif;
-            color: var(--soft-pink);
-            padding: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 20px;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, var(--accent-pink), #e04d8b);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 15px 15px;
+            background: linear-gradient(transparent, rgba(13, 2, 8, 0.9));
             color: #fff;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 101, 163, 0.3);
+            font-size: 0.9rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
             transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 101, 163, 0.5);
+        .photo-card:hover .photo-caption {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Chuva de Corações */
-        .heart-particle {
+        /* 100 Reasons Section */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .reason-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .reason-card:hover {
+            background: rgba(255, 77, 109, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .reason-num {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            min-width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+        }
+
+        .reason-text {
+            font-size: 0.95rem;
+            color: #f0e6ed;
+        }
+
+        /* Floating Controls */
+        .music-btn {
             position: fixed;
-            color: var(--accent-pink);
-            font-size: 1.5rem;
-            pointer-events: none;
-            z-index: 9999;
-            animation: fall linear forwards;
+            bottom: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-20px) translateX(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) translateX(var(--scatter-x)) rotate(360deg);
-                opacity: 0;
-            }
+        .music-btn:hover {
+            transform: scale(1.1) rotate(10deg);
         }
 
-        /* Responsividade */
-        @media (max-width: 480px) {
-            header h1 { font-size: 2rem; }
-            .counter-number { font-size: 1.4rem; }
-            .letter-container { padding: 25px 20px; }
-            .album-grid { grid-template-columns: 1fr; }
-            .photo-holder { aspect-ratio: 4 / 3; }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(10, 2, 8, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 60px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        footer span {
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            .letter-card {
+                padding: 25px 20px;
+            }
+            .timer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container fade-in">
-        
-        <header>
-            <h1>Para Sempre Nós Dois</h1>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Cada segundo ao seu lado importa.</p>
-        </header>
+    <canvas id="heartCanvas"></canvas>
 
-        <section class="counter-container" aria-label="Contador de
-            Perfeito — já ajustei e deixei o código sem os erros que encontrei, com algumas melhorias (lazy-loading das imagens, correção da variável de minutos, acessibilidade básica e valor padrão da data alinhado com 12/05/2026). Cole esse arquivo inteiro no seu repo e substitua o anterior. Se quiser, eu posso depois adicionar lightbox nas fotos, player customizado ou comportamento diferente quando a data de início estiver no futuro — me diz! 😄💖
+    <button class="music-btn" id="musicToggle" title="Tocar / Pausar Música">🎵</button>
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112189.mp3" type="audio/mpeg">
+    </audio>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosso Amor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0b0709;
-            --card-bg: #160f13;
-            --accent-pink: #ff65a3;
-            --soft-pink: #fda4af;
-            --text-main: #f3e8ee;
-            --text-muted: #9e8c96;
+    <header>
+        <div class="container">
+            <h1 class="couple-names">Felipe Gabriel ❤️ Anne Melyssa</h1>
+            <p class="subtitle">A NOSSA HISTÓRIA DE AMOR</p>
+
+            <div class="counter-container">
+                <div class="counter-title">Juntos e se amando há:</div>
+                <div class="timer-grid">
+                    <div class="time-card">
+                        <span class="time-number" id="days">0</span>
+                        <span class="time-label">Dias</span>
+                    </div>
+                    <div class="time-card">
+                        <span class="time-number" id="hours">0</span>
+                        <span class="time-label">Horas</span>
+                    </div>
+                    <div class="time-card">
+                        <span class="time-number" id="minutes">0</span>
+                        <span class="time-label">Minutos</span>
+                    </div>
+                    <div class="time-card">
+                        <span class="time-number" id="seconds">0</span>
+                        <span class="time-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="carta">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Carta de Amor</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="letter-card">
+                <div class="letter-text">
+Minha linda Anne Melyssa,
+
+Desde o dia 12 de maio de 2026, a minha vida ganhou uma cor e um sentido totalmente novos. Olhar para trás e ver como o nosso amor começou e como ele cresce a cada dia me faz ter a certeza absoluta de que você é o meu presente de Deus.
+
+Você tem um jeito único de iluminar tudo ao seu redor. Seu carinho, o seu abraço acolhedor, a sua doçura e até o seu jeitinho "mandona" me encantam e me fazem apaixonar por você repetidamente todos os dias. Com você, eu aprendi o verdadeiro significado de cuidar, de respeitar e de amar de todo o meu coração.
+
+Obrigado por nunca desistir de mim, por me inspirar a ser alguém melhor, por me ajudar a vencer minhas incertezas e por construir ao meu lado um futuro bonito e cheio de fé. Dormir e acordar sabendo que tenho você, ver sua mensagem de "bom dia" e sentir a paz da sua companhia são as maiores bênçãos que eu poderia desejar.
+
+Eu amo tudo em você — do seu sorriso radiante aos seus momentos mais tímidos. Que este nosso cantinho especial seja apenas uma pequena demonstração de tudo o que sinto.
+
+Eu te amo hoje, amanhã e por toda a minha vida.
+                </div>
+                <div class="letter-signature">Com todo o meu amor, Felipe Gabriel ❤️</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Momentos</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="photo-card">
+                    <img src="foto1.jpg" alt="Nosso Momento 1" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">O começo do nosso eterno amor ❤️</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto2.jpg" alt="Nosso Momento 2" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Seu sorriso ilumina tudo ✨</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto3.jpg" alt="Nosso Momento 3" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Melhor abraço do mundo 💖</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto4.jpg" alt="Nosso Momento 4" onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Juntos em cada passo 🌹</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto5.jpg" alt="Nosso Momento 5" onerror="this.src='https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Momento inesquecível 🥰</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto6.jpg" alt="Nosso Momento 6" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Minha pessoa favorita 💕</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto7.jpg" alt="Nosso Momento 7" onerror="this.src='https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Risadas e cumplicidade 😄</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto8.jpg" alt="Nosso Momento 8" onerror="this.src='https://images.unsplash.com/photo-1474552226712-ac0f0961a954?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Sempre ao seu lado 🤝</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto9.jpg" alt="Nosso Momento 9" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Você me faz tão bem ❤️</div>
+                </div>
+                <div class="photo-card">
+                    <img src="foto10.jpg" alt="Nosso Momento 10" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'">
+                    <div class="photo-caption">Para todo o sempre 💍</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="motivos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">100 Motivos Para Te Amar</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="reasons-grid" id="reasonsGrid"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Feito com amor por <span>Felipe Gabriel</span> para <span>Anne Melyssa</span> ❤️</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: #888;">Nosso Amor Eterno • 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data de Início do Namoro: 12 de Maio de 2026
+        const startDate = new Date('2026-05-12T00:00:00');
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            if (diff < 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            padding-bottom: 50px;
-        }
+        // Lista dos 100 Motivos
+        const reasons = [
+            "Seus olhos.", "Sua boca.", "Seu cabelo.", "Seu nariz... na verdade, você por inteiro.",
+            "Sua força (e não estou falando da força física).", "Sua alegria.", "Sua beleza.", "Seu carinho.",
+            "Seu abraço.", "Sua companhia.", "Seu cafuné.", "Seu toque.", "A sensação que você me traz.",
+            "A segurança que você me transmite.", "O conforto que sinto quando estou com você.",
+            "Eu me sinto bem ao seu lado.", "Você me traz alegria.", "Você me ensina a amar.", "Você me traz paz.",
+            "Você me traz felicidade.", "O fato de você ser cristã.", "Você me faz querer ser uma pessoa melhor.",
+            "Você me transformou em uma pessoa melhor.", "Você me faz pensar muito no futuro... no nosso futuro.",
+            "Você está me ajudando a perder a timidez.", "Seus beijos.", "Eu adoro ficar olhando para você.",
+            "Eu amo ver você feliz.", "Seu sorriso.", "O cuidado que você tem consigo mesma.",
+            "Eu gosto quando você é mandona.", "Sua voz fofinha à noite.", "Eu gosto que você confia em mim.",
+            "Eu gosto quando você sente ciúmes.", "Você me faz sentir amado.", "Eu amo fazer você se sentir amada.",
+            "Seu ciúme.", "O quanto você é esperta.", "O fato de você me contar as coisas.",
+            "Eu gosto de provocar seu ciúme de vez em quando.", "Seus objetivos.", "O fato de você ter objetivos comigo.",
+            "Sua determinação para alcançar suas metas.", "Você me entende.", "Eu gosto quando você fica tímida.",
+            "Sua disposição.", "Eu amo te fazer sorrir.", "Você faz eu voltar a ser criança.", "Sua sinceridade.",
+            "O fato de você estudar e se dedicar.", "Você está me levando para o caminho certo.",
+            "Eu gosto quando você segura minha mão.", "O quanto você é linda.", "O seu jeitinho doidinho.",
+            "Seu corpo.", "Quando você parece mais madura.", "Quando consigo ver seu pescoço.",
+            "Eu gosto de te conquistar todos os dias.", "Seu jeito encantador.", "O quanto você é sedutora sem perceber.",
+            "Quando você se preocupa comigo.", "Seu rostinho quando me olha toda fofinha.",
+            "O fato de você me esperar, mesmo eu sendo tão tímido.", "Sentar ao seu lado na escola.",
+            "Ficar agarradinho com você.", "Passar a mão no seu rostinho.", "Tirar sua maquiagem.",
+            "Quando você fala comigo como se eu fosse um bebê.", "Quando você me chama de amor.",
+            "Passar a tarde inteira com você.", "Olhar nos seus olhos.", "Te apertar bem forte.",
+            "Fazer carinho em você.", "Dormir perto de você e me sentir seguro.", "O quanto você é amorosa.",
+            "Com você eu consigo me soltar.", "Com você eu me sinto livre.", "Suas brincadeiras.",
+            "Seu lado safadinho.", "O fato de você estar tentando se aproximar mais de Deus.",
+            "Nossas conversas de madrugada.", "O fato de você se abrir comigo.", "Poder te transmitir segurança.",
+            "O fato de você ser geladinha.", "Seu tamanho.", "Ficar sozinho com você.",
+            "Quando você invade meu espaço.", "Quando você fica bem pertinho de mim.", "O fato de você saber se cuidar.",
+            "O quanto você é esforçada.", "O fato de você confiar em mim até nos momentos em que chora.",
+            "O quanto você é compreensiva.", "Quando você sente saudades de mim.", "Suas mensagens.",
+            "Acordar e ver seu \"bom dia\" no celular.", "Nossos momentos de risada.", "Sua silhueta.",
+            "O fato de você sempre estar ao meu lado.", "O fato de você nunca ter desistido de mim.",
+            "E, acima de tudo, eu amo o fato de você ter feito eu me apaixonar por você. ❤️"
+        ];
 
-        /* Animações suaves */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease forwards;
-        }
+        const grid = document.getElementById('reasonsGrid');
+        reasons.forEach((reason, index) => {
+            const card = document.createElement('div');
+            card.className = 'reason-card';
+            card.innerHTML = `
+                <div class="reason-num">${index + 1}</div>
+                <div class="reason-text">${reason}</div>
+            `;
+            grid.appendChild(card);
+        });
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        // Toggle de Música
+        const musicBtn = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.innerText = '🎵';
+            } else {
+                bgMusic.play().catch(() => {});
+                musicBtn.innerText = '🎶';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Corações Caindo
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const hearts = [];
+        const heartColors = ['#ff4d6d', '#ff758f', '#ffb3c1', '#e63946', '#c9184a'];
+
+        class Heart {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = -20;
+                this.size = Math.random() * 12 + 8;
+                this.speedY = Math.random() * 1.5 + 0.8;
+                this.speedX = Math.sin(Math.random() * Math.PI) * 0.8;
+                this.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * 0.02) * 0.5;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > canvas.height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                
+                ctx.beginPath();
+                const topCurveHeight = this.size * 0.3;
+                ctx.moveTo(0, topCurveHeight);
+                ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.restore();
             }
         }
 
-        /* Container Principal */
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 40px;
+        for (let i = 0; i < 40; i++) {
+            hearts.push(new Heart());
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hearts.forEach(heart => {
+                heart.update();
+                heart.draw();
+            });
+            requestAnimationFrame(animate);
         }
 
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--accent-pink);
-            margin-bottom: 10px;
-        }
-
-        /* Ajuste do Contador */
-        .counter-container {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 101, 163, 0.2);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .counter-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        .grid-counter {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .counter-box {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 15px 5px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-        }
-
-        .counter-number {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--accent-pink);
-            display: block;
-        }
-
-        .counter-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        /* Ajuste de Data Interativo */
-        .date-adjuster {
-            margin-top: 15px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        .date-adjuster input {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,101,163,0.3);
-            color: var(--text-main);
-            border-radius: 5px;
-            padding: 3px 8px;
-            font-size: 0.8rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* Carta de Amor */
-        .letter-container {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 35px;
-            margin-bottom: 40px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .letter-container::before {
-            content: '💌';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            background: var(--bg-color);
-            padding: 0 15px;
-        }
-
-        .letter-content {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            line-height: 1.8;
-            font-style: italic;
-            color: var(--soft-pink);
-            text-align: center;
-        }
-
-        /* Álbum de Fotos Ajustado */
-        .album-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--accent-pink);
-        }
-
-        .album-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .photo-holder {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .photo-holder:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(255, 101, 163, 0.2);
-            border-color: rgba(255, 101, 163, 0.3);
-        }
-
-        .photo-holder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        /* Classe aplicada via JS quando a imagem carregar */
-        .photo-holder img.loaded {
-            opacity: 1;
-        }
-
-        .photo-placeholder-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-align: center;
-            width: 85%;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            line-height: 1.4;
-        }
-
-        /* 100 Motivos */
-        .motivos-container {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .motivos-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .motivo-box {
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            font-family: 'Playfair Display', serif;
-            color: var(--soft-pink);
-            padding: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 20px;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, var(--accent-pink), #e04d8b);
-            color: #fff;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 101, 163, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 101, 163, 0.5);
-        }
-
-        /* Chuva de Corações */
-        .heart-particle {
-            position: fixed;
-            color: var(--accent-pink);
-            font-size: 1.5rem;
-            pointer-events: none;
-            z-index: 9999;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-20px) translateX(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) translateX(var(--scatter-x)) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Responsividade */
-        @media (max-width: 480px) {
-            header h1 { font-size: 2rem; }
-            .counter-number { font-size: 1.4rem; }
-            .letter-container { padding: 25px 20px; }
-            .album-grid { grid-template-columns: 1fr; }
-            .photo-holder { aspect-ratio: 4 / 3; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container fade-in">
-        
-        <header>
-            <h1>Para Sempre Nós Dois</h1>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Cada segundo ao seu lado importa.</p>
-        </header>
-
-        <section class="counter-container"
+        animate();
+    </script>
+</body>
+</html>
