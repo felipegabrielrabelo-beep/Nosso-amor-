@@ -26,27 +26,27 @@ body::after{
   z-index:1
 }
 
-#cursor{position:fixed;width:22px;height:22px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);font-size:20px;transition:transform .1s}
+#cursor{position:fixed;width:26px;height:26px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);font-size:24px;transition:transform .1s}
 #brilho{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,220,160,.18),transparent 65%);pointer-events:none;z-index:2;transform:translate(-50%,-50%);transition:all .25s ease}
 
 .titulo-caixa{
   position:relative;z-index:5;text-align:center;padding:35px 20px 10px;color:#f5e6d3;
   text-shadow:0 4px 20px rgba(0,0,0,.7)
 }
-.titulo-caixa h1{font-family:'Caveat',cursive;font-size:clamp(28px,5.5vw,58px);font-weight:700;color:#ffe4b8;line-height:1}
-.titulo-caixa p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(14px,1.9vw,19px);color:#d4b896;margin-top:6px;opacity:.9;max-width:700px;margin-left:auto;margin-right:auto}
+.titulo-caixa h1{font-family:'Caveat',cursive;font-size:clamp(34px,6.5vw,68px);font-weight:700;color:#ffe4b8;line-height:1}
+.titulo-caixa p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.3vw,23px);color:#d4b896;margin-top:8px;opacity:.95;max-width:780px;margin-left:auto;margin-right:auto}
 .subtitulo{
   position:relative;z-index:5;text-align:center;color:#c9a87c;font-family:'Special Elite',cursive;
-  font-size:11px;letter-spacing:3px;margin-bottom:20px;opacity:.8
+  font-size:13px;letter-spacing:3px;margin-bottom:20px;opacity:.85
 }
 
 .area-caixa{
-  position:relative;z-index:5;width:100%;min-height:520px;
+  position:relative;z-index:5;width:100%;min-height:540px;
   display:flex;justify-content:center;align-items:center;padding:20px;
   perspective:1800px
 }
 .caixa{
-  position:relative;width:min(420px,85vw);aspect-ratio:4/3;transform-style:preserve-3d;
+  position:relative;width:min(460px,90vw);aspect-ratio:4/3;transform-style:preserve-3d;
   transition:transform .8s ease
 }
 .caixa.aberta{transform:translateY(-30px)}
@@ -94,7 +94,7 @@ body::after{
 }
 .tampa::after{
   content:'💌';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  font-size:48px;opacity:.8;text-shadow:0 2px 8px rgba(0,0,0,.5)
+  font-size:56px;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.5)
 }
 .caixa.aberta .tampa{transform:rotateX(-125deg)}
 
@@ -103,22 +103,22 @@ body::after{
   box-shadow:0 2px 8px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.2);
   pointer-events:none;transition:opacity .5s ease
 }
-.laco-horizontal{left:0;right:0;top:45%;height:36px;z-index:15}
-.laco-vertical{top:0;bottom:0;left:50%;width:36px;transform:translateX(-50%);z-index:15}
+.laco-horizontal{left:0;right:0;top:45%;height:40px;z-index:15}
+.laco-vertical{top:0;bottom:0;left:50%;width:40px;transform:translateX(-50%);z-index:15}
 .no-laco{
-  position:absolute;top:calc(45% - 30px);left:50%;transform:translateX(-50%);
-  width:90px;height:70px;z-index:20;pointer-events:none;transition:opacity .5s ease
+  position:absolute;top:calc(45% - 34px);left:50%;transform:translateX(-50%);
+  width:100px;height:78px;z-index:20;pointer-events:none;transition:opacity .5s ease
 }
 .no-laco::before,.no-laco::after{
-  content:'';position:absolute;top:10px;width:55px;height:50px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  content:'';position:absolute;top:10px;width:62px;height:58px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
   background:radial-gradient(ellipse at 30% 30%,#ff3030,#8b0a0a);
   box-shadow:inset -5px -8px 15px rgba(0,0,0,.4), 0 4px 10px rgba(0,0,0,.3)
 }
-.no-laco::before{left:-30px;transform:rotate(-20deg)}
-.no-laco::after{right:-30px;transform:rotate(20deg)}
+.no-laco::before{left:-34px;transform:rotate(-20deg)}
+.no-laco::after{right:-34px;transform:rotate(20deg)}
 .no-laco span{
-  position:absolute;top:22px;left:50%;transform:translateX(-50%);
-  width:22px;height:30px;background:linear-gradient(90deg,#a01010,#c91818,#a01010);
+  position:absolute;top:24px;left:50%;transform:translateX(-50%);
+  width:26px;height:34px;background:linear-gradient(90deg,#a01010,#c91818,#a01010);
   border-radius:3px;box-shadow:0 2px 5px rgba(0,0,0,.4)
 }
 .caixa.aberta .laco-horizontal,
@@ -126,8 +126,8 @@ body::after{
 .caixa.aberta .no-laco{opacity:0;pointer-events:none}
 
 .clique-abrir{
-  position:absolute;bottom:-50px;left:50%;transform:translateX(-50%);
-  color:#ffe4b8;font-family:'Caveat',cursive;font-size:24px;white-space:nowrap;
+  position:absolute;bottom:-55px;left:50%;transform:translateX(-50%);
+  color:#ffe4b8;font-family:'Caveat',cursive;font-size:28px;white-space:nowrap;
   text-shadow:0 2px 10px rgba(0,0,0,.8);animation:piscar 1.8s ease-in-out infinite;z-index:20
 }
 @keyframes piscar{0%,100%{opacity:.5}50%{opacity:1}}
@@ -143,15 +143,15 @@ body::after{
   filter:drop-shadow(0 8px 15px rgba(0,0,0,.5))
 }
 .item.visivel{opacity:1}
-.item:hover{transform:scale(1.15) rotate(0deg) !important;z-index:100 !important;filter:drop-shadow(0 15px 30px rgba(0,0,0,.6))}
+.item:hover{transform:scale(1.18) rotate(0deg) !important;z-index:100 !important;filter:drop-shadow(0 15px 30px rgba(0,0,0,.65))}
 .item .face-item{
   position:relative;width:100%;height:100%;
   display:flex;align-items:center;justify-content:center;
-  font-size:clamp(28px,6vw,48px)
+  font-size:clamp(32px,7vw,56px)
 }
 .item .legenda-item{
-  position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);
-  white-space:nowrap;font-family:'Caveat',cursive;font-size:14px;color:#ffe4b8;
+  position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);
+  white-space:nowrap;font-family:'Caveat',cursive;font-size:17px;color:#ffe4b8;
   text-shadow:0 1px 4px rgba(0,0,0,.9);opacity:0;transition:opacity .2s
 }
 .item:hover .legenda-item{opacity:1}
@@ -174,79 +174,79 @@ body::after{
 .certeza{background:radial-gradient(circle at 30% 30%,#ffcdd2,#ef9a9a,#c62828);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:inset -6px -8px 15px rgba(0,0,0,.3)}
 
 .modal-item{
-  position:fixed;inset:0;background:rgba(10,5,2,.85);backdrop-filter:blur(8px);
+  position:fixed;inset:0;background:rgba(10,5,2,.88);backdrop-filter:blur(10px);
   z-index:500;display:none;align-items:center;justify-content:center;padding:20px;
   animation:fadeIn .4s ease
 }
 .modal-item.aberto{display:flex}
 .papel-modal{
-  position:relative;width:min(650px,96%);max-height:88vh;overflow-y:auto;
-  background:#f5ecd7;padding:45px 35px;border-radius:4px;
+  position:relative;width:min(720px,97%);max-height:90vh;overflow-y:auto;
+  background:#f5ecd7;padding:55px 42px;border-radius:4px;
   box-shadow:
-    0 30px 80px rgba(0,0,0,.7),
+    0 30px 90px rgba(0,0,0,.75),
     inset 0 0 60px rgba(139,90,43,.18),
     inset 0 0 0 1px rgba(139,90,43,.2);
   animation:abrirPapel .6s cubic-bezier(.34,1.56,.64,1)
 }
 .papel-modal::before{
-  content:'';position:absolute;inset:12px;border:1px solid rgba(139,90,43,.25);border-radius:2px;pointer-events:none
+  content:'';position:absolute;inset:14px;border:1px solid rgba(139,90,43,.28);border-radius:2px;pointer-events:none
 }
 .fechar-item{
-  position:absolute;top:12px;right:16px;background:none;border:none;
-  font-size:32px;color:#8b5a2b;cursor:pointer;opacity:.5;transition:all .2s;
+  position:absolute;top:14px;right:18px;background:none;border:none;
+  font-size:38px;color:#8b5a2b;cursor:pointer;opacity:.5;transition:all .2s;
   font-family:sans-serif;line-height:1
 }
 .fechar-item:hover{opacity:1;transform:rotate(90deg) scale(1.2);color:#8b1a1a}
 .titulo-item{
-  font-family:'Caveat',cursive;font-size:clamp(24px,4.5vw,42px);color:#8b1a1a;
-  text-align:center;margin-bottom:12px;line-height:1.1
+  font-family:'Caveat',cursive;font-size:clamp(30px,5.5vw,52px);color:#8b1a1a;
+  text-align:center;margin-bottom:15px;line-height:1.1
 }
 .divisor-item{
-  width:120px;height:2px;background:linear-gradient(90deg,transparent,#b8860b,transparent);
-  margin:0 auto 18px
+  width:140px;height:2px;background:linear-gradient(90deg,transparent,#b8860b,transparent);
+  margin:0 auto 22px
 }
 .conteudo-item{
-  font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.3vw,22px);
-  line-height:1.55;color:#3a2418;text-align:center
+  font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.8vw,28px);
+  line-height:1.6;color:#3a2418;text-align:center
 }
-.conteudo-item p{margin-bottom:10px}
-.manuscrito{font-family:'Caveat',cursive;color:#5c3a21;font-size:1.15em;line-height:1.2}
+.conteudo-item p{margin-bottom:12px}
+.manuscrito{font-family:'Caveat',cursive;color:#5c3a21;font-size:clamp(22px,3.2vw,34px);line-height:1.25}
 .linhas-papel{
-  background-image:repeating-linear-gradient(to bottom,transparent 0 30px,rgba(139,90,43,.2) 30px 31px);
-  padding-top:6px
+  background-image:repeating-linear-gradient(to bottom,transparent 0 36px,rgba(139,90,43,.22) 36px 37px);
+  padding-top:7px
 }
 
 .voltar-caixa{
-  position:fixed;bottom:25px;left:50%;transform:translateX(-50%);
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
   z-index:60;background:linear-gradient(145deg,#8b4513,#5a2a0c);color:#ffe4b8;
-  border:none;padding:12px 26px;border-radius:50px;cursor:pointer;
-  font-family:'Caveat',cursive;font-size:19px;box-shadow:0 8px 25px rgba(0,0,0,.5);
+  border:none;padding:14px 30px;border-radius:50px;cursor:pointer;
+  font-family:'Caveat',cursive;font-size:23px;box-shadow:0 8px 28px rgba(0,0,0,.55);
   transition:all .25s ease;display:none
 }
-.voltar-caixa:hover{transform:translateX(-50%) scale(1.06);box-shadow:0 12px 35px rgba(0,0,0,.6)}
+.voltar-caixa:hover{transform:translateX(-50%) scale(1.07);box-shadow:0 12px 38px rgba(0,0,0,.65)}
 .voltar-caixa.visivel{display:block}
 
 .coracao-flutuante{
   position:fixed;pointer-events:none;z-index:10;
   animation:subir 6s ease-out forwards;
-  font-size:18px;opacity:0
+  font-size:22px;opacity:0
 }
 @keyframes subir{
   0%{transform:translateY(0) scale(.5);opacity:0}
-  15%{opacity:.8}
-  100%{transform:translateY(-120vh) rotate(360deg) scale(1.2);opacity:0}
+  15%{opacity:.85}
+  100%{transform:translateY(-130vh) rotate(360deg) scale(1.3);opacity:0}
 }
 
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes abrirPapel{from{opacity:0;transform:scale(.6) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(0)}}
 
-.papel-modal::-webkit-scrollbar{width:6px}
+.papel-modal::-webkit-scrollbar{width:7px}
 .papel-modal::-webkit-scrollbar-thumb{background:linear-gradient(#8b5a2b,#b8860b);border-radius:3px}
 
 @media(max-width:700px){
-  .item{transform:scale(.82) !important}
-  .item:hover{transform:scale(1) rotate(0deg) !important}
-  .papel-modal{padding:35px 22px}
+  .item{transform:scale(.88) !important}
+  .item:hover{transform:scale(1.05) rotate(0deg) !important}
+  .papel-modal{padding:45px 26px}
 }
 </style>
 
@@ -284,16 +284,12 @@ body::after{
 <button class="voltar-caixa" id="voltarCaixa">↩ guardar tudo de volta na caixa</button>
 
 <script>
-/* =========================================================
-   💝 10 ITENS — SÓ SENTIMENTOS VERDADEIROS
-   NADA INVENTADO. NENHUM FATO QUE NÃO EXISTE.
-   ========================================================= */
 const ITENS = [
   {
-    id:'nomeTela',icone:'💖',formato:'coracao',largura:90,altura:90,rot:-6,
+    id:'nomeTela',icone:'💖',formato:'coracao',largura:100,altura:100,rot:-6,
     titulo:'💖 o que eu sinto quando vejo seu nome aparecer',
     conteudo:`
-      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 10px">
+      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 12px">
         não importa o que eu esteja fazendo.<br>
         não importa onde eu esteja.<br><br>
         no momento exato que eu vejo seu nome<br>
@@ -303,7 +299,7 @@ const ITENS = [
         um sorriso aparece no meu rosto<br>
         sem eu nem perceber.<br>
         tudo o resto deixa de importar.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.2em">
+        <strong style="color:#8b1a1a;font-size:1.25em">
           porque naquele momento,<br>
           a única coisa que existe no mundo<br>
           é você.
@@ -311,7 +307,7 @@ const ITENS = [
       </p>`
   },
   {
-    id:'acalma',icone:'🤍',formato:'papel',largura:115,altura:85,rot:5,
+    id:'acalma',icone:'🤍',formato:'papel',largura:130,altura:95,rot:5,
     titulo:'🤍 o jeito que você me acalma só de existir',
     conteudo:`
       <p class="manuscrito">
@@ -325,7 +321,7 @@ const ITENS = [
         que de alguma forma você faz parte da minha vida —<br>
         tudo já parece mais leve.<br>
         tudo já parece possível.<br><br>
-        <strong style="color:#8b1a1a">
+        <strong style="color:#8b1a1a;font-size:1.2em">
           você não precisa fazer nada.<br>
           você já me salva<br>
           só por existir.
@@ -333,10 +329,10 @@ const ITENS = [
       </p>`
   },
   {
-    id:'sorrisoSozinho',icone:'✨',formato:'estrela',largura:85,altura:85,rot:-12,
+    id:'sorrisoSozinho',icone:'✨',formato:'estrela',largura:95,altura:95,rot:-12,
     titulo:'✨ todas as vezes que eu sorri sozinho pensando em você',
     conteudo:`
-      <div style="font-size:90px;margin:10px 0">😊💭</div>
+      <div style="font-size:100px;margin:12px 0">😊💭</div>
       <p class="manuscrito">
         acontece o tempo todo.<br>
         no meio do dia, fazendo qualquer coisa,<br>
@@ -352,15 +348,15 @@ const ITENS = [
       </p>`
   },
   {
-    id:'noites',icone:'🌙',formato:'lua',largura:95,altura:95,rot:8,
+    id:'noites',icone:'🌙',formato:'lua',largura:105,altura:105,rot:8,
     titulo:'🌙 as noites que eu passei acordado pensando na gente',
     conteudo:`
-      <div style="font-size:80px;margin:10px 0;opacity:.9">🌙⭐</div>
+      <div style="font-size:90px;margin:12px 0;opacity:.95">🌙⭐</div>
       <p class="manuscrito">
         tem noites que o sono não vem.<br>
         eu fico ali, deitado, no escuro,<br>
         e a minha cabeça só pensa em uma coisa:<br>
-        <strong style="color:#8b1a1a">você.</strong><br><br>
+        <strong style="color:#8b1a1a;font-size:1.15em">você.</strong><br><br>
         penso em tudo o que eu quero viver.<br>
         penso em tudo o que eu quero te dar.<br>
         penso em quem você é,<br>
@@ -373,7 +369,7 @@ const ITENS = [
       </p>`
   },
   {
-    id:'mostrar',icone:'📝',formato:'listinha',largura:115,altura:100,rot:-9,
+    id:'mostrar',icone:'📝',formato:'listinha',largura:125,altura:110,rot:-9,
     titulo:'📝 tudo o que eu quero te mostrar um dia',
     conteudo:`
       <p class="manuscrito">
@@ -390,17 +386,17 @@ const ITENS = [
         um por um.<br>
         com calma.<br>
         do jeito que você merece.<br><br>
-        <strong style="color:#8b1a1a">
+        <strong style="color:#8b1a1a;font-size:1.15em">
           quero que você seja a primeira pessoa<br>
           a conhecer o eu de verdade.
         </strong>
       </p>`
   },
   {
-    id:'primeiros',icone:'🔮',formato:'papelzinho',largura:110,altura:90,rot:11,
+    id:'primeiros',icone:'🔮',formato:'papelzinho',largura:120,altura:100,rot:11,
     titulo:'🔮 todos os "primeiros" que eu quero viver com você',
     conteudo:`
-      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 10px">
+      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 12px">
         eu já imaginei mil vezes.<br><br>
         o primeiro olhar.<br>
         o primeiro abraço.<br>
@@ -411,14 +407,14 @@ const ITENS = [
         eu já ensaiei mil vezes na minha cabeça.<br>
         cada um deles já vale mais<br>
         do que qualquer coisa que eu já vivi.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.15em">
+        <strong style="color:#8b1a1a;font-size:1.2em">
           todos os meus "primeiros" a partir de agora<br>
           eu quero que sejam com você.
         </strong>
       </p>`
   },
   {
-    id:'promessa',icone:'🤞',formato:'promessa',largura:100,altura:80,rot:-4,
+    id:'promessa',icone:'🤞',formato:'promessa',largura:110,altura:90,rot:-4,
     titulo:'🤞 a promessa que eu fiz pra mim mesmo sobre você',
     conteudo:`
       <p class="manuscrito">
@@ -428,7 +424,7 @@ const ITENS = [
         que eu fiz pra mim mesmo,<br>
         no fundo do meu coração,<br>
         e que eu vou cumprir custe o que custar:<br><br>
-        <strong style="color:#8b1a1a;font-size:1.3em;line-height:1.3">
+        <strong style="color:#8b1a1a;font-size:1.3em;line-height:1.35">
           — eu nunca vou fazer você se arrepender<br>
           de ter me escolhido.<br>
           nunca vou fazer você se sentir pouco.<br>
@@ -442,10 +438,10 @@ const ITENS = [
       </p>`
   },
   {
-    id:'naoDisse',icone:'💌',formato:'carta-longa',largura:115,altura:130,rot:7,
+    id:'naoDisse',icone:'💌',formato:'carta-longa',largura:125,altura:145,rot:7,
     titulo:'💌 todas as palavras que eu ainda não tive coragem de dizer',
     conteudo:`
-      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 8px">
+      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 10px">
         todo dia eu falo muita coisa com você.<br>
         mas existem palavras<br>
         que ainda ficam presas na garganta.<br>
@@ -455,24 +451,24 @@ const ITENS = [
         são palavras grandes demais.<br>
         fortes demais.<br>
         verdadeiras demais.<br><br>
-        <strong style="color:#8b1a1a">
+        <strong style="color:#8b1a1a;font-size:1.2em">
           um dia eu vou conseguir dizer todas elas.<br>
           todas, sem exceção.<br>
           e quando esse dia chegar,<br>
           você vai finalmente entender<br>
           o quanto, o quão profundo,<br>
           e o quão verdadeiramente<br>
-          <em style="font-size:1.3em">eu te amo.</em>
+          <em style="font-size:1.4em">eu te amo.</em>
         </strong><br><br>
         por enquanto, fica aqui<br>
         um pedacinho do que ainda não disse 💘
       </p>`
   },
   {
-    id:'espera',icone:'🕰️',formato:'relogio',largura:90,altura:90,rot:-14,
+    id:'espera',icone:'🕰️',formato:'relogio',largura:100,altura:100,rot:-14,
     titulo:'🕰️ cada segundo que eu espero pra finalmente te encontrar',
     conteudo:`
-      <div style="font-size:85px;margin:10px 0">⏳💗</div>
+      <div style="font-size:95px;margin:12px 0">⏳💗</div>
       <p class="manuscrito">
         eu espero.<br>
         espero todo dia.<br>
@@ -488,17 +484,17 @@ const ITENS = [
         vai parecer pequeno<br>
         no momento em que eu finalmente puder te olhar nos olhos<br>
         e te dizer na sua cara:<br><br>
-        <strong style="color:#8b1a1a;font-size:1.3em">
+        <strong style="color:#8b1a1a;font-size:1.35em">
           — valeu a pena esperar por você.
         </strong><br><br>
         eu espero. com todo o coração. 💫
       </p>`
   },
   {
-    id:'certeza',icone:'❤️',formato:'certeza',largura:100,altura:100,rot:3,
+    id:'certeza',icone:'❤️',formato:'certeza',largura:110,altura:110,rot:3,
     titulo:'❤️ a certeza que eu tenho, mesmo sem te ter conhecido ainda',
     conteudo:`
-      <p class="manuscrito" style="font-size:1.1em">
+      <p class="manuscrito" style="font-size:1.15em">
         muita gente vai dizer que eu não posso ter certeza de nada.<br>
         que é cedo.<br>
         que não existe.<br>
@@ -506,7 +502,7 @@ const ITENS = [
         mas essas pessoas não sentem o que eu sinto.<br>
         elas não sabem o que acontece comigo<br>
         toda vez que eu falo com você.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.3em;line-height:1.3">
+        <strong style="color:#8b1a1a;font-size:1.35em;line-height:1.4">
           eu tenho uma certeza dentro do peito<br>
           que é maior que qualquer dúvida,<br>
           maior que qualquer distância,<br>
@@ -516,7 +512,7 @@ const ITENS = [
           que em qualquer lugar,<br>
           em qualquer tempo,<br>
           em qualquer vida —<br>
-          <em style="font-size:1.4em">eu iria escolher você.</em>
+          <em style="font-size:1.5em">eu iria escolher você.</em>
         </strong><br><br>
         essa é a única verdade que eu preciso. 💍
       </p>`
@@ -531,7 +527,7 @@ document.addEventListener('mousemove',e=>{
   brilho.style.left = e.clientX + 'px';
   brilho.style.top = e.clientY + 'px';
 });
-document.addEventListener('mousedown',()=>cursor.style.transform='translate(-50%,-50%) scale(1.7)');
+document.addEventListener('mousedown',()=>cursor.style.transform='translate(-50%,-50%) scale(1.8)');
 document.addEventListener('mouseup',()=>cursor.style.transform='translate(-50%,-50%) scale(1)');
 
 const caixa = document.getElementById('caixa');
@@ -542,7 +538,7 @@ let aberta = false;
 function posicoesItens(){
   const w = window.innerWidth, h = window.innerHeight;
   const centroX = w/2, centroY = h/2;
-  const raio = Math.min(w,h) * 0.38;
+  const raio = Math.min(w,h) * 0.4;
   return ITENS.map((item,i)=>{
     const angulo = (i / ITENS.length) * Math.PI * 2 - Math.PI/2 + (Math.random()-.5)*0.3;
     const r = raio * (0.75 + Math.random()*0.35);
@@ -557,17 +553,17 @@ function abrirCaixa(){
   if(aberta) return;
   aberta = true;
   caixa.classList.add('aberta');
-  for(let i=0;i<25;i++){
+  for(let i=0;i<28;i++){
     setTimeout(()=>{
       const c = document.createElement('div');
       c.className = 'coracao-flutuante';
       c.textContent = ['💖','✨','💗','💕','⭐'][Math.floor(Math.random()*5)];
-      c.style.left = (window.innerWidth/2 + (Math.random()-.5)*200) + 'px';
+      c.style.left = (window.innerWidth/2 + (Math.random()-.5)*220) + 'px';
       c.style.top = (window.innerHeight*0.55) + 'px';
       c.style.animationDelay = (Math.random()*.5) + 's';
       document.body.appendChild(c);
       setTimeout(()=>c.remove(),6500);
-    },i*60);
+    },i*55);
   }
   const pos = posicoesItens();
   containerItens.innerHTML = '';
@@ -621,7 +617,7 @@ function abrirItem(item){
   tituloItem.textContent = item.titulo;
   conteudoItem.innerHTML = item.conteudo;
   modal.classList.add('aberto');
-  for(let i=0;i<8;i++){
+  for(let i=0;i<10;i++){
     setTimeout(()=>{
       const c = document.createElement('div');
       c.className = 'coracao-flutuante';
@@ -630,7 +626,7 @@ function abrirItem(item){
       c.style.top = window.innerHeight + 'px';
       document.body.appendChild(c);
       setTimeout(()=>c.remove(),6500);
-    },i*100);
+    },i*90);
   }
 }
 
