@@ -1,5 +1,5 @@
 <html style="margin:0;padding:0;">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 (function(){
@@ -9,22 +9,24 @@
       --bg:#1a1625;
       --card:#2a2338;
       --text:#f8f4ff;
-      --muted:#c9b8e0;
+      --muted:#e0d4f5;
       --accent:#d4a5ff;
-      --accent-soft:rgba(212,165,255,.18);
+      --accent-soft:rgba(212,165,255,.2);
       --accent2:#f2c98a;
-      --accent2-soft:rgba(242,201,138,.15);
-      --border:rgba(201,184,224,.15)
+      --accent2-soft:rgba(242,201,138,.18);
+      --border:rgba(201,184,224,.2)
     }
     *{box-sizing:border-box}
+    html{font-size:18px}
     body{
       margin:0;
-      background: radial-gradient(1200px 800px at 20% -10%, rgba(212,165,255,.15), transparent 60%),
-                  radial-gradient(900px 700px at 100% 30%, rgba(242,201,138,.1), transparent 55%),
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(212,165,255,.18), transparent 60%),
+                  radial-gradient(900px 700px at 100% 30%, rgba(242,201,138,.12), transparent 55%),
                   var(--bg);
       color:var(--text);
       font-family:'Bricolage Grotesque',sans-serif;
       overflow-x:hidden;
+      line-height:1.8;
     }
     .font-display{font-family:'Syne',sans-serif}
     .reveal{
@@ -38,87 +40,80 @@
     .reveal:nth-child(5){animation-delay:.6s}
     .reveal:nth-child(6){animation-delay:.75s}
     .reveal:nth-child(7){animation-delay:.9s}
-    @keyframes fadeUp{
-      to{opacity:1;transform:translateY(0)}
-    }
-    .heart-pulse{
-      animation:pulseHeart 1.8s ease-in-out infinite;
-    }
+    .reveal:nth-child(8){animation-delay:1.05s}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+    .heart-pulse{animation:pulseHeart 1.8s ease-in-out infinite;cursor:pointer}
     @keyframes pulseHeart{
       0%,100%{transform:scale(1)}
-      15%{transform:scale(1.15)}
+      15%{transform:scale(1.18)}
       30%{transform:scale(1)}
-      45%{transform:scale(1.1)}
+      45%{transform:scale(1.12)}
       60%{transform:scale(1)}
     }
     .float-heart{
-      position:absolute;
-      bottom:-60px;
-      opacity:0;
-      animation:floatUp linear infinite;
-      pointer-events:none;
+      position:absolute;bottom:-60px;opacity:0;
+      animation:floatUp linear infinite;pointer-events:none;
     }
     @keyframes floatUp{
       0%{transform:translateY(0) rotate(0deg);opacity:0}
-      10%{opacity:.7}
+      10%{opacity:.8}
       90%{opacity:.4}
       100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
     }
     .shimmer{
       background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));
       background-size:200% 100%;
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
       animation:shimmer 4s ease infinite;
     }
-    @keyframes shimmer{
-      0%,100%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-    }
+    @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
     .love-card{
       transition:all .4s ease;
       border:1px solid var(--border);
-      background:linear-gradient(135deg,var(--card),rgba(42,35,56,.6));
+      background:linear-gradient(135deg,var(--card),rgba(42,35,56,.7));
       backdrop-filter:blur(10px);
     }
     .love-card:hover{
       transform:translateY(-6px);
       border-color:var(--accent);
-      box-shadow:0 20px 60px rgba(212,165,255,.15);
+      box-shadow:0 20px 60px rgba(212,165,255,.2);
     }
     .btn-love{
       background:linear-gradient(135deg,var(--accent),#b885e8);
       color:#1a1625;
       transition:all .3s ease;
-      font-weight:600;
-      border:none;
-      cursor:pointer;
+      font-weight:700;
+      border:none;cursor:pointer;
+      font-size:1.25rem;
+      padding:20px 40px;
+      border-radius:999px;
     }
-    .btn-love:hover{
-      transform:scale(1.05);
-      box-shadow:0 10px 30px rgba(212,165,255,.4);
-    }
-    .divider{
-      height:1px;
-      background:linear-gradient(90deg,transparent,var(--accent),transparent);
-    }
+    .btn-love:hover{transform:scale(1.05);box-shadow:0 15px 40px rgba(212,165,255,.45)}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
     .quote-mark{
       font-family:'Syne',sans-serif;
-      font-size:120px;
-      line-height:1;
-      color:var(--accent);
-      opacity:.3;
+      font-size:160px;line-height:1;
+      color:var(--accent);opacity:.25;
     }
-    .hidden-msg{
-      max-height:0;
-      overflow:hidden;
-      opacity:0;
-      transition:all .8s ease;
+    .hidden-msg{max-height:0;overflow:hidden;opacity:0;transition:all 1s ease}
+    .hidden-msg.show{max-height:5000px;opacity:1}
+    .motivo{
+      opacity:0;transform:translateX(-20px);
+      transition:all .6s ease;
+      font-size:1.25rem;
+      padding:14px 0;
+      border-bottom:1px dashed var(--border);
     }
-    .hidden-msg.show{
-      max-height:2000px;
-      opacity:1;
+    .motivo.show{opacity:1;transform:translateX(0)}
+    .secret-fade{
+      animation:secretFade 1.2s ease forwards;
+    }
+    @keyframes secretFade{
+      0%{opacity:0;transform:scale(.8)}
+      100%{opacity:1;transform:scale(1)}
+    }
+    @media (max-width:640px){
+      html{font-size:20px}
     }
   `;
   document.head.appendChild(s);
@@ -128,88 +123,92 @@
 <div id="hearts-container" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden"></div>
 
 <div style="position:relative;z-index:1">
-  <div class="max-w-4xl mx-auto px-6">
+  <div class="max-w-4xl mx-auto px-5">
     
     <!-- HERO -->
-    <div class="reveal text-center py-32">
-      <div class="heart-pulse inline-block mb-8">
-        <svg width="80" height="80" viewBox="0 0 24 24" fill="var(--accent)">
+    <div class="reveal text-center py-28">
+      <div id="coracaoPrincipal" class="heart-pulse inline-block mb-10">
+        <svg width="120" height="120" viewBox="0 0 24 24" fill="var(--accent)">
           <path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/>
         </svg>
       </div>
-      <p style="color:var(--accent2);letter-spacing:.3em;font-size:12px;text-transform:uppercase;margin-bottom:20px">
-        Com todo o meu amor
+      <p style="color:var(--accent2);letter-spacing:.35em;font-size:1rem;text-transform:uppercase;margin-bottom:28px">
+        ✨ Com todo o meu amor ✨
       </p>
-      <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
+      <h1 class="font-display font-extrabold leading-tight mb-8" style="font-size:clamp(2.8rem,8vw,5.5rem)">
         Para <span class="shimmer">você</span>,<br>
         o amor da minha vida
       </h1>
-      <p style="color:var(--muted);font-size:19px;max-w-xl;margin:0 auto;line-height:1.7">
+      <p style="color:var(--muted);font-size:1.4rem;max-w-3xl;margin:0 auto;line-height:1.9">
         Cada batida do meu coração tem o seu nome. Cada momento ao seu lado é o melhor momento da minha vida.
       </p>
     </div>
 
-    <div class="divider my-8"></div>
+    <div class="divider my-10"></div>
 
     <!-- SEÇÃO 1: SEMPRE COM VOCÊ -->
     <div class="reveal love-card rounded-3xl p-8 md:p-12 my-16">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
-        <div style="width:56px;height:56px;border-radius:16px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div style="display:flex;align-items:center;gap:18px;margin-bottom:28px">
+        <div style="width:70px;height:70px;border-radius:20px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold">
+        <h2 class="font-display font-bold" style="font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.3">
           Eu sempre vou estar com você
         </h2>
       </div>
-      <p style="color:var(--muted);font-size:18px;line-height:1.8">
-        Não importa o que venha pela frente — dias bons, dias difíceis, tempestades ou dias de sol. <strong style="color:var(--text)">eu estarei sempre ao seu lado.</strong> Você nunca mais vai precisar enfrentar nada sozinha, porque eu sou o seu porto seguro, o seu ombro amigo, o seu para sempre. Quando você precisar de mim, eu estarei lá. Sempre.
+      <p style="color:var(--muted);font-size:1.35rem;line-height:1.9">
+        Não importa o que venha pela frente — dias bons, dias difíceis, tempestades ou dias de sol. <strong style="color:var(--text);font-size:1.4rem">eu estarei sempre ao seu lado.</strong><br><br>
+        Você nunca mais vai precisar enfrentar nada sozinha, porque eu sou o seu porto seguro, o seu ombro amigo, o seu para sempre. Quando você precisar de mim, eu estarei lá. <strong class="shimmer">Sempre.</strong>
       </p>
     </div>
 
     <!-- SEÇÃO 2: SORRISO -->
     <div class="reveal love-card rounded-3xl p-8 md:p-12 my-16">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
-        <div style="width:56px;height:56px;border-radius:16px;background:var(--accent2-soft);display:flex;align-items:center;justify-content:center;color:var(--accent2);flex-shrink:0">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div style="display:flex;align-items:center;gap:18px;margin-bottom:28px">
+        <div style="width:70px;height:70px;border-radius:20px;background:var(--accent2-soft);display:flex;align-items:center;justify-content:center;color:var(--accent2);flex-shrink:0">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"/>
             <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
             <line x1="9" y1="9" x2="9.01" y2="9"/>
             <line x1="15" y1="9" x2="15.01" y2="9"/>
           </svg>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold">
+        <h2 class="font-display font-bold" style="font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.3">
           Seu sorriso é a minha felicidade
         </h2>
       </div>
-      <p style="color:var(--muted);font-size:18px;line-height:1.8">
-        Existe algo mais bonito no mundo do que o seu sorriso? Eu duvido. <strong style="color:var(--text)">Quando você sorri, o meu mundo inteiro fica mais leve, mais bonito, mais completo.</strong> É aquele sorriso que me acalma depois de um dia cansativo, que me dá forças para seguir em frente, que me faz sentir que tudo vale a pena. Eu vivo para ver você sorrir — e prometo fazer de tudo para que ele nunca desapareça do seu rosto.
+      <p style="color:var(--muted);font-size:1.35rem;line-height:1.9">
+        Existe algo mais bonito no mundo do que o seu sorriso? Eu duvido. <strong style="color:var(--text);font-size:1.4rem">Quando você sorri, o meu mundo inteiro fica mais leve, mais bonito, mais completo.</strong><br><br>
+        É aquele sorriso que me acalma depois de um dia cansativo, que me dá forças para seguir em frente, que me faz sentir que tudo vale a pena. Eu vivo para ver você sorrir — e prometo fazer de tudo para que ele nunca desapareça do seu rosto.
       </p>
     </div>
 
     <!-- SEÇÃO 3: CONFIANÇA -->
     <div class="reveal love-card rounded-3xl p-8 md:p-12 my-16">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
-        <div style="width:56px;height:56px;border-radius:16px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div style="display:flex;align-items:center;gap:18px;margin-bottom:28px">
+        <div style="width:70px;height:70px;border-radius:20px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold">
+        <h2 class="font-display font-bold" style="font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.3">
           Você pode confiar em mim
         </h2>
       </div>
-      <p style="color:var(--muted);font-size:18px;line-height:1.8">
-        Eu sei que confiar não é fácil, mas eu quero ganhar a sua confiança todos os dias, com atitudes, com verdade, com lealdade. <strong style="color:var(--text)">Eu nunca vou te machucar, nunca vou te trair, nunca vou te fazer chorar sem ser de felicidade.</strong> O meu amor por você é verdadeiro, é puro, é para toda a vida. Abra o seu coração para mim, porque eu vou cuidar dele como se fosse o meu próprio — porque na verdade, ele já é.
+      <p style="color:var(--muted);font-size:1.35rem;line-height:1.9">
+        Eu sei que confiar não é fácil, mas eu quero ganhar a sua confiança todos os dias, com atitudes, com verdade, com lealdade.<br><br>
+        <strong style="color:var(--text);font-size:1.4rem">Eu nunca vou te machucar, nunca vou te trair, nunca vou te fazer chorar sem ser de felicidade.</strong><br><br>
+        O meu amor por você é verdadeiro, é puro, é para toda a vida. Abra o seu coração para mim, porque eu vou cuidar dele como se fosse o meu próprio — porque na verdade, ele já é.
       </p>
     </div>
 
     <!-- SEÇÃO 4: FUTURO -->
     <div class="reveal love-card rounded-3xl p-8 md:p-12 my-16">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
-        <div style="width:56px;height:56px;border-radius:16px;background:var(--accent2-soft);display:flex;align-items:center;justify-content:center;color:var(--accent2);flex-shrink:0">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div style="display:flex;align-items:center;gap:18px;margin-bottom:28px">
+        <div style="width:70px;height:70px;border-radius:20px;background:var(--accent2-soft);display:flex;align-items:center;justify-content:center;color:var(--accent2);flex-shrink:0">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
             <line x1="16" y1="2" x2="16" y2="6"/>
             <line x1="8" y1="2" x2="8" y2="6"/>
@@ -217,58 +216,139 @@
             <path d="M9 16l2 2 4-4"/>
           </svg>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold">
+        <h2 class="font-display font-bold" style="font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.3">
           Você é o meu futuro
         </h2>
       </div>
-      <p style="color:var(--muted);font-size:18px;line-height:1.8">
-        Quando eu imagino o meu futuro, não consigo ver nada sem você. <strong style="color:var(--text)">Eu vejo nós dois envelhecendo juntos, construindo a nossa casa, realizando os nossos sonhos, vivendo mil histórias de amor.</strong> Quero acordar todos os dias ao seu lado, quero ser o pai dos seus filhos, quero compartilhar cada conquista, cada viagem, cada momento simples que se torna especial porque é com você. O meu futuro tem um nome: <span class="shimmer font-semibold">o seu.</span>
+      <p style="color:var(--muted);font-size:1.35rem;line-height:1.9">
+        Quando eu imagino o meu futuro, não consigo ver nada sem você. <strong style="color:var(--text);font-size:1.4rem">Eu vejo nós dois envelhecendo juntos, construindo a nossa casa, realizando os nossos sonhos.</strong><br><br>
+        Quero acordar todos os dias ao seu lado, quero ser o pai dos seus filhos, quero compartilhar cada conquista, cada viagem, cada momento simples que se torna especial porque é com você.<br><br>
+        O meu futuro tem um nome: <span class="shimmer font-semibold">o seu.</span>
       </p>
     </div>
 
     <div class="divider my-16"></div>
 
-    <!-- MENSAGEM FINAL -->
+    <!-- 10 MOTIVOS -->
+    <div class="reveal text-center py-10">
+      <h2 class="font-display font-bold mb-6" style="font-size:clamp(2rem,5.5vw,3.2rem)">
+        🎁 <span class="shimmer">10 Motivos</span> pelos quais<br>eu te amo loucamente 🎁
+      </h2>
+      <p style="color:var(--muted);font-size:1.25rem;margin-bottom:32px">
+        Clique no botão e descubra um por um
+      </p>
+      <button id="btnMotivos" class="btn-love">
+        💜 Mostrar o próximo motivo 💜
+      </button>
+      <div id="listaMotivos" class="text-left mt-12 love-card rounded-3xl p-8 md:p-10"></div>
+    </div>
+
+    <div class="divider my-16"></div>
+
+    <!-- MENSAGEM FINAL + CARTA -->
     <div class="reveal text-center py-12">
       <span class="quote-mark">"</span>
-      <h3 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-8 -mt-12">
+      <h3 class="font-display font-extrabold leading-tight mb-10 -mt-16" style="font-size:clamp(2rem,6vw,3.8rem)">
         Eu te amo <span class="shimmer">mais do que as palavras</span><br>
         podem explicar
       </h3>
-      <p style="color:var(--muted);font-size:20px;max-w-2xl;margin:0 auto 40px;line-height:1.8">
+      <p style="color:var(--muted);font-size:1.4rem;max-w-3xl;margin:0 auto 48px;line-height:1.9">
         Te amo hoje, te amo amanhã, te amo sempre. Te amo nos detalhes, te amo no todo, te amo em cada pedacinho do meu ser. Você é a melhor coisa que já aconteceu na minha vida, e eu sou a pessoa mais sortuda do mundo por poder te chamar de minha.
       </p>
       
-      <button id="btnSurpresa" class="btn-love px-10 py-4 rounded-full text-lg">
-        Clique aqui para uma surpresa 💜
+      <button id="btnSurpresa" class="btn-love">
+        💌 ABRIR CARTA DE AMOR 💌
       </button>
       
-      <div id="msgSurpresa" class="hidden-msg mt-12">
-        <div class="love-card rounded-3xl p-8 md:p-12 text-left" style="background:linear-gradient(135deg,rgba(212,165,255,.15),rgba(242,201,138,.1))">
-          <p style="font-size:18px;line-height:1.9;color:var(--text)">
-            <strong class="shimmer">Minha princesa,</strong><br><br>
+      <div id="msgSurpresa" class="hidden-msg mt-14">
+        <div class="love-card rounded-3xl p-8 md:p-14 text-left" style="background:linear-gradient(135deg,rgba(212,165,255,.2),rgba(242,201,138,.15))">
+          <p style="font-size:1.4rem;line-height:2;color:var(--text)">
+            <strong class="shimmer" style="font-size:1.8rem">Minha princesa,</strong><br><br>
             Antes de você, eu não sabia o que era amar de verdade. Eu não sabia que o coração podia bater tão forte por alguém, que um olhar podia acalmar todo o meu mundo, que um abraço podia ser o meu lugar favorito.<br><br>
             Você chegou e mudou tudo. Você me mostrou que o amor não é só um sentimento — é escolher a pessoa todos os dias, é cuidar, é respeitar, é sonhar junto. E eu escolho você. Hoje. Amanhã. E todos os dias que virão.<br><br>
             Obrigado por ser você. Por ser incrível, por ser doce, por ser forte, por ser <strong>minha.</strong><br><br>
             Eu te amo. Mais do que ontem. Menos do que amanhã. Para sempre.<br><br>
-            <span style="float:right;color:var(--accent2);font-weight:600">Com todo o meu coração — Seu amor 💜</span>
+            <span style="float:right;color:var(--accent2);font-weight:700;font-size:1.5rem">Com todo o meu coração — Seu amor 💜✨</span>
           </p>
         </div>
       </div>
     </div>
 
+    <!-- MENSAGEM: VOCÊ É A MINHA PRIMEIRA -->
+    <div id="promessaBox" class="reveal hidden-msg love-card rounded-3xl p-8 md:p-14 my-20" style="background:linear-gradient(135deg,rgba(212,165,255,.18),rgba(242,201,138,.12))">
+      <div class="text-center mb-10">
+        <div class="inline-block mb-6 heart-pulse">
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="var(--accent)">
+            <path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/>
+          </svg>
+        </div>
+        <h2 class="font-display font-bold" style="font-size:clamp(1.9rem,5vw,3rem);line-height:1.3">
+          💜 <span class="shimmer">Você é a minha primeira</span> 💜
+        </h2>
+      </div>
+      
+      <div style="font-size:1.4rem;line-height:2;color:var(--muted);max-width-3xl">
+        <p>
+          Eu preciso te dizer uma coisa que é muito importante para mim, e que faz todo o meu amor por você ser ainda mais especial: <strong style="color:var(--text);font-size:1.5rem">você é a minha primeira namorada.</strong>
+        </p>
+        <br>
+        <p>
+          E quando eu digo isso, <strong style="color:var(--text)">não é para me gabar de nada</strong> — não é como se fosse um "título" ou algo que eu tenha feito. É para te explicar que <span class="shimmer font-semibold">TODO o amor que eu tenho para dar, é seu.</span>
+        </p>
+        <br>
+        <p>
+          Antes de você, eu nunca tinha amado ninguém assim. Nunca tinha sentido o coração bater tão forte, nunca tinha tido vontade de cuidar de alguém, nunca tinha sonhado com um futuro ao lado de uma pessoa. <strong style="color:var(--text)">Foi com você que eu aprendi a amar de verdade.</strong>
+        </p>
+        <br>
+        <p>
+          Cada primeiro beijo, cada primeiro "eu te amo", cada primeira vez que eu senti borboletas na barriga — <strong style="color:var(--text)">tudo foi com você. Tudo é seu.</strong> Não tenho comparações, não tenho marcas do passado, não tenho medos de outras histórias. O meu coração é todo seu, desde a primeira vez que eu olhei para você e soube que era você.
+        </p>
+        <br>
+        <p>
+          Por ser a primeira, você tem um pedaço de mim que ninguém mais nunca vai ter. Mas mais do que isso: <strong class="shimmer" style="font-size:1.5rem">eu quero que você seja também a última.</strong> A única. A que vai ficar para sempre.
+        </p>
+        <br>
+        <p style="text-align:center;font-size:1.55rem;color:var(--text);font-weight:600">
+          Eu não quero mais ninguém depois de você. Eu só quero você. Hoje, amanhã, e para todo o sempre. 💜
+        </p>
+      </div>
+    </div>
+
+    <!-- SURPRESA SECRETA -->
+    <div id="surpresaSecreta" class="hidden-msg text-center py-16 my-10">
+      <div class="love-card rounded-3xl p-10 md:p-16 secret-fade" style="background:radial-gradient(circle,rgba(212,165,255,.25),transparent 70%),var(--card)">
+        <div class="heart-pulse inline-block mb-8">
+          <svg width="100" height="100" viewBox="0 0 24 24" fill="var(--accent2)">
+            <path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/>
+          </svg>
+        </div>
+        <h2 class="font-display font-extrabold mb-8 shimmer" style="font-size:clamp(2rem,6vw,3.5rem)">
+          🎉 VOCÊ DESCOBRIU O SEGREDO! 🎉
+        </h2>
+        <p style="font-size:1.5rem;line-height:2;color:var(--text);max-w-2xl;margin:0 auto">
+          Isso aqui é só pra você, meu amor:<br><br>
+          Quando você estiver lendo isso, saiba que <strong>nesse exato momento eu estou pensando em você</strong>, sorrindo igual um idiota só de imaginar a sua cara.<br><br>
+          Você é a minha pessoa. A minha melhor amiga. O amor da minha vida. E não importa o que aconteça — <strong class="shimmer">eu sempre vou escolher você.</strong><br><br>
+          Obrigado por existir. Obrigado por ser minha. Eu te amo infinitamente 💜
+        </p>
+        <p style="margin-top:32px;font-size:1.8rem" class="shimmer font-bold">
+          NÓS, PARA SEMPRE ✨
+        </p>
+      </div>
+    </div>
+
     <!-- RODAPÉ -->
-    <div class="text-center py-16" style="border-top:1px solid var(--border);margin-top:20px">
-      <div class="heart-pulse inline-block mb-4">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--accent)">
+    <div class="text-center py-20" style="border-top:1px solid var(--border);margin-top:20px">
+      <div class="heart-pulse inline-block mb-6">
+        <svg width="50" height="50" viewBox="0 0 24 24" fill="var(--accent)">
           <path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/>
         </svg>
       </div>
-      <p style="color:var(--muted);font-size:14px">
+      <p style="color:var(--muted);font-size:1.15rem">
         Feito com infinito amor, especialmente para você
       </p>
-      <p class="font-display shimmer mt-2 text-lg font-semibold">
-        Nós, para sempre ✨
+      <p class="font-display shimmer mt-4 font-extrabold" style="font-size:1.8rem">
+        💜 Nós, para sempre ✨
       </p>
     </div>
 
@@ -283,9 +363,9 @@
   function createHeart(){
     var h = document.createElement('div');
     h.className = 'float-heart';
-    var size = 10 + Math.random() * 24;
+    var size = 14 + Math.random() * 30;
     var left = Math.random() * 100;
-    var dur = 6 + Math.random() * 8;
+    var dur = 7 + Math.random() * 9;
     var delay = Math.random() * 5;
     var color = Math.random() > 0.5 ? 'var(--accent)' : 'var(--accent2)';
     h.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg>`;
@@ -295,20 +375,80 @@
     container.appendChild(h);
     setTimeout(function(){ h.remove() }, (dur + delay) * 1000);
   }
-  for(var i=0;i<15;i++) setTimeout(createHeart, i * 300);
-  setInterval(createHeart, 600);
+  for(var i=0;i<18;i++) setTimeout(createHeart, i * 250);
+  setInterval(createHeart, 500);
 })();
 
-// Botão surpresa
+// 10 motivos
+(function(){
+  var motivos = [
+    "💜 Porque o seu sorriso ilumina até os meus piores dias",
+    "💜 Porque você me faz querer ser uma pessoa melhor todos os dias",
+    "💜 Porque com você até o momento mais chato fica divertido",
+    "💜 Porque o seu abraço é o lugar mais seguro do mundo pra mim",
+    "💜 Porque você me entende sem que eu precise dizer nada",
+    "💜 Porque você é forte, guerreira e mesmo assim tão doce comigo",
+    "💜 Porque quando eu te olho, eu vejo todo o o meu futuro",
+    "💜 Porque você me ama mesmo sabendo todos os meus defeitos",
+    "💜 Porque cada beijo seu ainda me dá arrepios como se fosse o primeiro",
+    "💜 Porque você é simplesmente VOCÊ — e isso já é mais que suficiente pra eu te amar pra sempre"
+  ];
+  var atual = 0;
+  var btn = document.getElementById('btnMotivos');
+  var lista = document.getElementById('listaMotivos');
+  btn.addEventListener('click', function(){
+    if(atual >= motivos.length){
+      btn.textContent = '💜 Todos os motivos foram revelados! 💜';
+      btn.disabled = true;
+      btn.style.opacity = '.6';
+      return;
+    }
+    var p = document.createElement('p');
+    p.className = 'motivo';
+    p.innerHTML = `<strong style="color:var(--accent);font-size:1.4rem">${atual+1}.</strong> ${motivos[atual]}`;
+    lista.appendChild(p);
+    setTimeout(function(){ p.classList.add('show') }, 50);
+    atual++;
+    btn.textContent = `💜 Mostrar motivo ${atual+1}/10 💜`;
+    if(atual >= motivos.length){
+      setTimeout(function(){
+        document.getElementById('promessaBox').classList.add('show');
+        document.getElementById('promessaBox').scrollIntoView({behavior:'smooth', block:'center'});
+      }, 800);
+    }
+  });
+})();
+
+// Botão carta
 (function(){
   var btn = document.getElementById('btnSurpresa');
   var msg = document.getElementById('msgSurpresa');
-  if(!btn || !msg) return;
   btn.addEventListener('click', function(){
     msg.classList.toggle('show');
-    btn.textContent = msg.classList.contains('show') ? 'Guarde a surpresa 💜' : 'Clique aqui para uma surpresa 💜';
+    btn.textContent = msg.classList.contains('show') ? '💌 Guardar carta 💌' : '💌 ABRIR CARTA DE AMOR 💌';
     if(msg.classList.contains('show')){
       msg.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+})();
+
+// SURPRESA SECRETA: clique 3x no coração principal
+(function(){
+  var coracao = document.getElementById('coracaoPrincipal');
+  var segredo = document.getElementById('surpresaSecreta');
+  var cliques = 0;
+  coracao.addEventListener('click', function(){
+    cliques++;
+    if(cliques === 3){
+      segredo.classList.add('show');
+      segredo.scrollIntoView({behavior:'smooth', block:'center'});
+      cliques = 0;
+      for(var i=0;i<50;i++){
+        setTimeout(function(){
+          var evt = new Event('click');
+          document.getElementById('hearts-container').dispatchEvent(evt);
+        }, i*50);
+      }
     }
   });
 })();
