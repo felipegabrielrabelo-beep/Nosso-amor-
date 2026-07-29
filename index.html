@@ -1,649 +1,316 @@
-<html style="margin:0;padding:0">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Special+Elite&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;min-height:100%;overflow-x:hidden;cursor:none}
+<html style="margin:0;padding:0;">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+(function(){
+  var s = document.createElement('style');
+  s.textContent = `
+    :root{
+      --bg:#1a1625;
+      --card:#2a2338;
+      --text:#f8f4ff;
+      --muted:#c9b8e0;
+      --accent:#d4a5ff;
+      --accent-soft:rgba(212,165,255,.18);
+      --accent2:#f2c98a;
+      --accent2-soft:rgba(242,201,138,.15);
+      --border:rgba(201,184,224,.15)
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(212,165,255,.15), transparent 60%),
+                  radial-gradient(900px 700px at 100% 30%, rgba(242,201,138,.1), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      font-family:'Bricolage Grotesque',sans-serif;
+      overflow-x:hidden;
+    }
+    .font-display{font-family:'Syne',sans-serif}
+    .reveal{
+      opacity:0;
+      transform:translateY(30px);
+      animation:fadeUp .9s ease forwards;
+    }
+    .reveal:nth-child(2){animation-delay:.15s}
+    .reveal:nth-child(3){animation-delay:.3s}
+    .reveal:nth-child(4){animation-delay:.45s}
+    .reveal:nth-child(5){animation-delay:.6s}
+    .reveal:nth-child(6){animation-delay:.75s}
+    .reveal:nth-child(7){animation-delay:.9s}
+    @keyframes fadeUp{
+      to{opacity:1;transform:translateY(0)}
+    }
+    .heart-pulse{
+      animation:pulseHeart 1.8s ease-in-out infinite;
+    }
+    @keyframes pulseHeart{
+      0%,100%{transform:scale(1)}
+      15%{transform:scale(1.15)}
+      30%{transform:scale(1)}
+      45%{transform:scale(1.1)}
+      60%{transform:scale(1)}
+    }
+    .float-heart{
+      position:absolute;
+      bottom:-60px;
+      opacity:0;
+      animation:floatUp linear infinite;
+      pointer-events:none;
+    }
+    @keyframes floatUp{
+      0%{transform:translateY(0) rotate(0deg);opacity:0}
+      10%{opacity:.7}
+      90%{opacity:.4}
+      100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
+    }
+    .shimmer{
+      background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));
+      background-size:200% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:shimmer 4s ease infinite;
+    }
+    @keyframes shimmer{
+      0%,100%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+    }
+    .love-card{
+      transition:all .4s ease;
+      border:1px solid var(--border);
+      background:linear-gradient(135deg,var(--card),rgba(42,35,56,.6));
+      backdrop-filter:blur(10px);
+    }
+    .love-card:hover{
+      transform:translateY(-6px);
+      border-color:var(--accent);
+      box-shadow:0 20px 60px rgba(212,165,255,.15);
+    }
+    .btn-love{
+      background:linear-gradient(135deg,var(--accent),#b885e8);
+      color:#1a1625;
+      transition:all .3s ease;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+    }
+    .btn-love:hover{
+      transform:scale(1.05);
+      box-shadow:0 10px 30px rgba(212,165,255,.4);
+    }
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    }
+    .quote-mark{
+      font-family:'Syne',sans-serif;
+      font-size:120px;
+      line-height:1;
+      color:var(--accent);
+      opacity:.3;
+    }
+    .hidden-msg{
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transition:all .8s ease;
+    }
+    .hidden-msg.show{
+      max-height:2000px;
+      opacity:1;
+    }
+  `;
+  document.head.appendChild(s);
+})();
+</script>
 
-body{
-  background:
-    radial-gradient(ellipse 900px 600px at 50% 35%, rgba(255,220,170,.25), transparent 70%),
-    repeating-linear-gradient(90deg,
-      #2a1810 0px, #3a2418 3px, #2f1d13 6px, #3d2719 10px,
-      #2a1810 14px, #352015 20px, #2d1b11 26px, #3a2418 32px),
-    linear-gradient(180deg,#2a1810,#1a0f08);
-  color:#3a2418;
-  font-family:'Cormorant Garamond',serif;
-  position:relative
-}
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;opacity:.15;
-  background-image:
-    radial-gradient(circle 1px at 20% 30%, #000 50%, transparent 51%),
-    radial-gradient(circle 1px at 70% 60%, #000 50%, transparent 51%),
-    radial-gradient(circle 1.5px at 40% 80%, #000 50%, transparent 51%),
-    radial-gradient(circle 1px at 85% 15%, #000 50%, transparent 51%);
-  background-size:300px 300px, 400px 400px, 500px 500px, 250px 250px;
-  z-index:1
-}
+<div id="hearts-container" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden"></div>
 
-#cursor{position:fixed;width:26px;height:26px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);font-size:24px;transition:transform .1s}
-#brilho{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,220,160,.18),transparent 65%);pointer-events:none;z-index:2;transform:translate(-50%,-50%);transition:all .25s ease}
+<div style="position:relative;z-index:1">
+  <div class="max-w-4xl mx-auto px-6">
+    
+    <!-- HERO -->
+    <div class="reveal text-center py-32">
+      <div class="heart-pulse inline-block mb-8">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="var(--accent)">
+          <path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/>
+        </svg>
+      </div>
+      <p style="color:var(--accent2);letter-spacing:.3em;font-size:12px;text-transform:uppercase;margin-bottom:20px">
+        Com todo o meu amor
+      </p>
+      <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
+        Para <span class="shimmer">você</span>,<br>
+        o amor da minha vida
+      </h1>
+      <p style="color:var(--muted);font-size:19px;max-w-xl;margin:0 auto;line-height:1.7">
+        Cada batida do meu coração tem o seu nome. Cada momento ao seu lado é o melhor momento da minha vida.
+      </p>
+    </div>
 
-.titulo-caixa{
-  position:relative;z-index:5;text-align:center;padding:35px 20px 10px;color:#f5e6d3;
-  text-shadow:0 4px 20px rgba(0,0,0,.7)
-}
-.titulo-caixa h1{font-family:'Caveat',cursive;font-size:clamp(34px,6.5vw,68px);font-weight:700;color:#ffe4b8;line-height:1}
-.titulo-caixa p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.3vw,23px);color:#d4b896;margin-top:8px;opacity:.95;max-width:780px;margin-left:auto;margin-right:auto}
-.subtitulo{
-  position:relative;z-index:5;text-align:center;color:#c9a87c;font-family:'Special Elite',cursive;
-  font-size:13px;letter-spacing:3px;margin-bottom:20px;opacity:.85
-}
+    <div class="divider my-8"></div>
 
-.area-caixa{
-  position:relative;z-index:5;width:100%;min-height:540px;
-  display:flex;justify-content:center;align-items:center;padding:20px;
-  perspective:1800px
-}
-.caixa{
-  position:relative;width:min(460px,90vw);aspect-ratio:4/3;transform-style:preserve-3d;
-  transition:transform .8s ease
-}
-.caixa.aberta{transform:translateY(-30px)}
+    <!-- SEÇÃO 1: SEMPRE COM VOCÊ -->
+    <div class="reveal love-card rounded-3xl p-8 md:p-12 my-16">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+        <div style="width:56px;height:56px;border-radius:16px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold">
+          Eu sempre vou estar com você
+        </h2>
+      </div>
+      <p style="color:var(--muted);font-size:18px;line-height:1.8">
+        Não importa o que venha pela frente — dias bons, dias difíceis, tempestades ou dias de sol. <strong style="color:var(--text)">eu estarei sempre ao seu lado.</strong> Você nunca mais vai precisar enfrentar nada sozinha, porque eu sou o seu porto seguro, o seu ombro amigo, o seu para sempre. Quando você precisar de mim, eu estarei lá. Sempre.
+      </p>
+    </div>
 
-.corpo{
-  position:absolute;inset:10% 0 0 0;border-radius:8px;
-  background:
-    repeating-linear-gradient(90deg,
-      #6b3410 0px,#8b4513 3px,#7a3c12 6px,#9a4a15 10px,#6b3410 14px),
-    linear-gradient(180deg,#8b4513,#5a2a0c);
-  box-shadow:
-    inset 0 15px 30px rgba(0,0,0,.5),
-    inset 0 -5px 15px rgba(0,0,0,.4),
-    0 30px 60px rgba(0,0,0,.6),
-    0 0 0 2px #3d1f08;
-  overflow:hidden
-}
-.corpo::before{
-  content:'';position:absolute;inset:8px;border:2px solid rgba(255,215,150,.25);border-radius:4px;pointer-events:none
-}
-.dentro-caixa{
-  position:absolute;inset:12px;border-radius:4px;
-  background:
-    radial-gradient(ellipse at center,#2a1208 0%,#1a0a04 100%);
-  box-shadow:inset 0 10px 40px rgba(0,0,0,.8)
-}
+    <!-- SEÇÃO 2: SORRISO -->
+    <div class="reveal love-card rounded-3xl p-8 md:p-12 my-16">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+        <div style="width:56px;height:56px;border-radius:16px;background:var(--accent2-soft);display:flex;align-items:center;justify-content:center;color:var(--accent2);flex-shrink:0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold">
+          Seu sorriso é a minha felicidade
+        </h2>
+      </div>
+      <p style="color:var(--muted);font-size:18px;line-height:1.8">
+        Existe algo mais bonito no mundo do que o seu sorriso? Eu duvido. <strong style="color:var(--text)">Quando você sorri, o meu mundo inteiro fica mais leve, mais bonito, mais completo.</strong> É aquele sorriso que me acalma depois de um dia cansativo, que me dá forças para seguir em frente, que me faz sentir que tudo vale a pena. Eu vivo para ver você sorrir — e prometo fazer de tudo para que ele nunca desapareça do seu rosto.
+      </p>
+    </div>
 
-.tampa{
-  position:absolute;inset:0 0 30% 0;transform-origin:bottom center;transform-style:preserve-3d;
-  transition:transform 1.2s cubic-bezier(.68,-.55,.265,1.55);
-  border-radius:8px 8px 4px 4px;
-  background:
-    repeating-linear-gradient(90deg,
-      #7a3c12 0px,#9a4a15 3px,#8b4513 6px,#a85218 10px,#7a3c12 14px),
-    linear-gradient(180deg,#a85218,#6b3410);
-  box-shadow:
-    inset 0 8px 20px rgba(255,220,170,.2),
-    inset 0 -5px 15px rgba(0,0,0,.4),
-    0 15px 40px rgba(0,0,0,.5),
-    0 0 0 2px #3d1f08;
-  z-index:10
-}
-.tampa::before{
-  content:'';position:absolute;inset:8px;border:2px solid rgba(255,215,150,.3);border-radius:4px
-}
-.tampa::after{
-  content:'💌';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  font-size:56px;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.5)
-}
-.caixa.aberta .tampa{transform:rotateX(-125deg)}
+    <!-- SEÇÃO 3: CONFIANÇA -->
+    <div class="reveal love-card rounded-3xl p-8 md:p-12 my-16">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+        <div style="width:56px;height:56px;border-radius:16px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold">
+          Você pode confiar em mim
+        </h2>
+      </div>
+      <p style="color:var(--muted);font-size:18px;line-height:1.8">
+        Eu sei que confiar não é fácil, mas eu quero ganhar a sua confiança todos os dias, com atitudes, com verdade, com lealdade. <strong style="color:var(--text)">Eu nunca vou te machucar, nunca vou te trair, nunca vou te fazer chorar sem ser de felicidade.</strong> O meu amor por você é verdadeiro, é puro, é para toda a vida. Abra o seu coração para mim, porque eu vou cuidar dele como se fosse o meu próprio — porque na verdade, ele já é.
+      </p>
+    </div>
 
-.laco-horizontal,.laco-vertical{
-  position:absolute;background:linear-gradient(90deg,#8b0a0a,#c91818 50%,#8b0a0a);
-  box-shadow:0 2px 8px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.2);
-  pointer-events:none;transition:opacity .5s ease
-}
-.laco-horizontal{left:0;right:0;top:45%;height:40px;z-index:15}
-.laco-vertical{top:0;bottom:0;left:50%;width:40px;transform:translateX(-50%);z-index:15}
-.no-laco{
-  position:absolute;top:calc(45% - 34px);left:50%;transform:translateX(-50%);
-  width:100px;height:78px;z-index:20;pointer-events:none;transition:opacity .5s ease
-}
-.no-laco::before,.no-laco::after{
-  content:'';position:absolute;top:10px;width:62px;height:58px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
-  background:radial-gradient(ellipse at 30% 30%,#ff3030,#8b0a0a);
-  box-shadow:inset -5px -8px 15px rgba(0,0,0,.4), 0 4px 10px rgba(0,0,0,.3)
-}
-.no-laco::before{left:-34px;transform:rotate(-20deg)}
-.no-laco::after{right:-34px;transform:rotate(20deg)}
-.no-laco span{
-  position:absolute;top:24px;left:50%;transform:translateX(-50%);
-  width:26px;height:34px;background:linear-gradient(90deg,#a01010,#c91818,#a01010);
-  border-radius:3px;box-shadow:0 2px 5px rgba(0,0,0,.4)
-}
-.caixa.aberta .laco-horizontal,
-.caixa.aberta .laco-vertical,
-.caixa.aberta .no-laco{opacity:0;pointer-events:none}
+    <!-- SEÇÃO 4: FUTURO -->
+    <div class="reveal love-card rounded-3xl p-8 md:p-12 my-16">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+        <div style="width:56px;height:56px;border-radius:16px;background:var(--accent2-soft);display:flex;align-items:center;justify-content:center;color:var(--accent2);flex-shrink:0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <path d="M9 16l2 2 4-4"/>
+          </svg>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold">
+          Você é o meu futuro
+        </h2>
+      </div>
+      <p style="color:var(--muted);font-size:18px;line-height:1.8">
+        Quando eu imagino o meu futuro, não consigo ver nada sem você. <strong style="color:var(--text)">Eu vejo nós dois envelhecendo juntos, construindo a nossa casa, realizando os nossos sonhos, vivendo mil histórias de amor.</strong> Quero acordar todos os dias ao seu lado, quero ser o pai dos seus filhos, quero compartilhar cada conquista, cada viagem, cada momento simples que se torna especial porque é com você. O meu futuro tem um nome: <span class="shimmer font-semibold">o seu.</span>
+      </p>
+    </div>
 
-.clique-abrir{
-  position:absolute;bottom:-55px;left:50%;transform:translateX(-50%);
-  color:#ffe4b8;font-family:'Caveat',cursive;font-size:28px;white-space:nowrap;
-  text-shadow:0 2px 10px rgba(0,0,0,.8);animation:piscar 1.8s ease-in-out infinite;z-index:20
-}
-@keyframes piscar{0%,100%{opacity:.5}50%{opacity:1}}
-.caixa.aberta .clique-abrir{display:none}
+    <div class="divider my-16"></div>
 
-.itens-memorias{
-  position:fixed;inset:0;pointer-events:none;z-index:50
-}
-.item{
-  position:absolute;pointer-events:auto;cursor:pointer;
-  transition:transform .6s cubic-bezier(.34,1.56,.64,1), opacity .5s ease, box-shadow .3s ease;
-  transform-origin:center center;opacity:0;
-  filter:drop-shadow(0 8px 15px rgba(0,0,0,.5))
-}
-.item.visivel{opacity:1}
-.item:hover{transform:scale(1.18) rotate(0deg) !important;z-index:100 !important;filter:drop-shadow(0 15px 30px rgba(0,0,0,.65))}
-.item .face-item{
-  position:relative;width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:clamp(32px,7vw,56px)
-}
-.item .legenda-item{
-  position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);
-  white-space:nowrap;font-family:'Caveat',cursive;font-size:17px;color:#ffe4b8;
-  text-shadow:0 1px 4px rgba(0,0,0,.9);opacity:0;transition:opacity .2s
-}
-.item:hover .legenda-item{opacity:1}
+    <!-- MENSAGEM FINAL -->
+    <div class="reveal text-center py-12">
+      <span class="quote-mark">"</span>
+      <h3 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-8 -mt-12">
+        Eu te amo <span class="shimmer">mais do que as palavras</span><br>
+        podem explicar
+      </h3>
+      <p style="color:var(--muted);font-size:20px;max-w-2xl;margin:0 auto 40px;line-height:1.8">
+        Te amo hoje, te amo amanhã, te amo sempre. Te amo nos detalhes, te amo no todo, te amo em cada pedacinho do meu ser. Você é a melhor coisa que já aconteceu na minha vida, e eu sou a pessoa mais sortuda do mundo por poder te chamar de minha.
+      </p>
+      
+      <button id="btnSurpresa" class="btn-love px-10 py-4 rounded-full text-lg">
+        Clique aqui para uma surpresa 💜
+      </button>
+      
+      <div id="msgSurpresa" class="hidden-msg mt-12">
+        <div class="love-card rounded-3xl p-8 md:p-12 text-left" style="background:linear-gradient(135deg,rgba(212,165,255,.15),rgba(242,201,138,.1))">
+          <p style="font-size:18px;line-height:1.9;color:var(--text)">
+            <strong class="shimmer">Minha princesa,</strong><br><br>
+            Antes de você, eu não sabia o que era amar de verdade. Eu não sabia que o coração podia bater tão forte por alguém, que um olhar podia acalmar todo o meu mundo, que um abraço podia ser o meu lugar favorito.<br><br>
+            Você chegou e mudou tudo. Você me mostrou que o amor não é só um sentimento — é escolher a pessoa todos os dias, é cuidar, é respeitar, é sonhar junto. E eu escolho você. Hoje. Amanhã. E todos os dias que virão.<br><br>
+            Obrigado por ser você. Por ser incrível, por ser doce, por ser forte, por ser <strong>minha.</strong><br><br>
+            Eu te amo. Mais do que ontem. Menos do que amanhã. Para sempre.<br><br>
+            <span style="float:right;color:var(--accent2);font-weight:600">Com todo o meu coração — Seu amor 💜</span>
+          </p>
+        </div>
+      </div>
+    </div>
 
-.papel{background:#f5ecd7;box-shadow:inset 0 0 30px rgba(139,90,43,.2), 0 0 0 1px rgba(139,90,43,.15)}
-.papel::after{
-  content:'';position:absolute;inset:0;pointer-events:none;opacity:.4;
-  background:
-    radial-gradient(ellipse 80px 50px at 80% 20%, rgba(139,90,43,.18), transparent 70%),
-    radial-gradient(ellipse 40px 30px at 15% 75%, rgba(139,90,43,.12), transparent 70%)
-}
-.coracao{background:transparent;display:flex;align-items:center;justify-content:center}
-.estrela{background:transparent;display:flex;align-items:center;justify-content:center}
-.papelzinho{background:#faf5e8;border:1px solid rgba(139,90,43,.2);box-shadow:inset 0 0 40px rgba(139,90,43,.08)}
-.listinha{background:#fff9c4;box-shadow:inset 0 0 20px rgba(200,170,50,.1), 2px 4px 12px rgba(0,0,0,.3)}
-.lua{background:radial-gradient(circle,rgba(139,90,43,.1),transparent 70%),#f5ecd7;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.promessa{background:linear-gradient(135deg,#e8d4b0,#c9a876);border:1px solid rgba(139,90,43,.3)}
-.carta-longa{background:#f5ecd7;box-shadow:inset 0 0 40px rgba(139,90,43,.15)}
-.relogio{background:transparent;display:flex;align-items:center;justify-content:center}
-.certeza{background:radial-gradient(circle at 30% 30%,#ffcdd2,#ef9a9a,#c62828);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:inset -6px -8px 15px rgba(0,0,0,.3)}
+    <!-- RODAPÉ -->
+    <div class="text-center py-16" style="border-top:1px solid var(--border);margin-top:20px">
+      <div class="heart-pulse inline-block mb-4">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--accent)">
+          <path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/>
+        </svg>
+      </div>
+      <p style="color:var(--muted);font-size:14px">
+        Feito com infinito amor, especialmente para você
+      </p>
+      <p class="font-display shimmer mt-2 text-lg font-semibold">
+        Nós, para sempre ✨
+      </p>
+    </div>
 
-.modal-item{
-  position:fixed;inset:0;background:rgba(10,5,2,.88);backdrop-filter:blur(10px);
-  z-index:500;display:none;align-items:center;justify-content:center;padding:20px;
-  animation:fadeIn .4s ease
-}
-.modal-item.aberto{display:flex}
-.papel-modal{
-  position:relative;width:min(720px,97%);max-height:90vh;overflow-y:auto;
-  background:#f5ecd7;padding:55px 42px;border-radius:4px;
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.75),
-    inset 0 0 60px rgba(139,90,43,.18),
-    inset 0 0 0 1px rgba(139,90,43,.2);
-  animation:abrirPapel .6s cubic-bezier(.34,1.56,.64,1)
-}
-.papel-modal::before{
-  content:'';position:absolute;inset:14px;border:1px solid rgba(139,90,43,.28);border-radius:2px;pointer-events:none
-}
-.fechar-item{
-  position:absolute;top:14px;right:18px;background:none;border:none;
-  font-size:38px;color:#8b5a2b;cursor:pointer;opacity:.5;transition:all .2s;
-  font-family:sans-serif;line-height:1
-}
-.fechar-item:hover{opacity:1;transform:rotate(90deg) scale(1.2);color:#8b1a1a}
-.titulo-item{
-  font-family:'Caveat',cursive;font-size:clamp(30px,5.5vw,52px);color:#8b1a1a;
-  text-align:center;margin-bottom:15px;line-height:1.1
-}
-.divisor-item{
-  width:140px;height:2px;background:linear-gradient(90deg,transparent,#b8860b,transparent);
-  margin:0 auto 22px
-}
-.conteudo-item{
-  font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.8vw,28px);
-  line-height:1.6;color:#3a2418;text-align:center
-}
-.conteudo-item p{margin-bottom:12px}
-.manuscrito{font-family:'Caveat',cursive;color:#5c3a21;font-size:clamp(22px,3.2vw,34px);line-height:1.25}
-.linhas-papel{
-  background-image:repeating-linear-gradient(to bottom,transparent 0 36px,rgba(139,90,43,.22) 36px 37px);
-  padding-top:7px
-}
-
-.voltar-caixa{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
-  z-index:60;background:linear-gradient(145deg,#8b4513,#5a2a0c);color:#ffe4b8;
-  border:none;padding:14px 30px;border-radius:50px;cursor:pointer;
-  font-family:'Caveat',cursive;font-size:23px;box-shadow:0 8px 28px rgba(0,0,0,.55);
-  transition:all .25s ease;display:none
-}
-.voltar-caixa:hover{transform:translateX(-50%) scale(1.07);box-shadow:0 12px 38px rgba(0,0,0,.65)}
-.voltar-caixa.visivel{display:block}
-
-.coracao-flutuante{
-  position:fixed;pointer-events:none;z-index:10;
-  animation:subir 6s ease-out forwards;
-  font-size:22px;opacity:0
-}
-@keyframes subir{
-  0%{transform:translateY(0) scale(.5);opacity:0}
-  15%{opacity:.85}
-  100%{transform:translateY(-130vh) rotate(360deg) scale(1.3);opacity:0}
-}
-
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes abrirPapel{from{opacity:0;transform:scale(.6) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(0)}}
-
-.papel-modal::-webkit-scrollbar{width:7px}
-.papel-modal::-webkit-scrollbar-thumb{background:linear-gradient(#8b5a2b,#b8860b);border-radius:3px}
-
-@media(max-width:700px){
-  .item{transform:scale(.88) !important}
-  .item:hover{transform:scale(1.05) rotate(0deg) !important}
-  .papel-modal{padding:45px 26px}
-}
-</style>
-
-<div id="cursor">💖</div>
-<div id="brilho"></div>
-
-<div class="titulo-caixa">
-  <h1>✦ A Caixa do Que Eu Sinto Por Você ✦</h1>
-  <p>— guardo aqui tudo o que vem do coração, sem palavras inventadas, sem histórias que não existem — só o que realmente sinto —</p>
-</div>
-<div class="subtitulo">✦ CLIQUE NA CAIXA PARA ABRIR ✦</div>
-
-<div class="area-caixa">
-  <div class="caixa" id="caixa">
-    <div class="laco-horizontal"></div>
-    <div class="laco-vertical"></div>
-    <div class="no-laco"><span></span></div>
-    <div class="tampa"></div>
-    <div class="corpo"><div class="dentro-caixa"></div></div>
-    <div class="clique-abrir">clique aqui 💝</div>
   </div>
 </div>
-
-<div class="itens-memorias" id="itens"></div>
-
-<div class="modal-item" id="modal">
-  <div class="papel-modal">
-    <button class="fechar-item" id="fecharItem">×</button>
-    <h2 class="titulo-item" id="tituloItem"></h2>
-    <div class="divisor-item"></div>
-    <div class="conteudo-item" id="conteudoItem"></div>
-  </div>
-</div>
-
-<button class="voltar-caixa" id="voltarCaixa">↩ guardar tudo de volta na caixa</button>
 
 <script>
-const ITENS = [
-  {
-    id:'nomeTela',icone:'💖',formato:'coracao',largura:100,altura:100,rot:-6,
-    titulo:'💖 o que eu sinto quando vejo seu nome aparecer',
-    conteudo:`
-      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 12px">
-        não importa o que eu esteja fazendo.<br>
-        não importa onde eu esteja.<br><br>
-        no momento exato que eu vejo seu nome<br>
-        aparecer na minha tela,<br>
-        o mundo inteiro para.<br><br>
-        meu coração acelera.<br>
-        um sorriso aparece no meu rosto<br>
-        sem eu nem perceber.<br>
-        tudo o resto deixa de importar.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.25em">
-          porque naquele momento,<br>
-          a única coisa que existe no mundo<br>
-          é você.
-        </strong>
-      </p>`
-  },
-  {
-    id:'acalma',icone:'🤍',formato:'papel',largura:130,altura:95,rot:5,
-    titulo:'🤍 o jeito que você me acalma só de existir',
-    conteudo:`
-      <p class="manuscrito">
-        tem dias que tudo parece difícil.<br>
-        dias que o mundo parece pesado,<br>
-        que tudo dá errado,<br>
-        que eu não consigo ver saída.<br><br>
-        e então eu penso em você.<br><br>
-        só de pensar que você existe,<br>
-        que você está aí,<br>
-        que de alguma forma você faz parte da minha vida —<br>
-        tudo já parece mais leve.<br>
-        tudo já parece possível.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.2em">
-          você não precisa fazer nada.<br>
-          você já me salva<br>
-          só por existir.
-        </strong>
-      </p>`
-  },
-  {
-    id:'sorrisoSozinho',icone:'✨',formato:'estrela',largura:95,altura:95,rot:-12,
-    titulo:'✨ todas as vezes que eu sorri sozinho pensando em você',
-    conteudo:`
-      <div style="font-size:100px;margin:12px 0">😊💭</div>
-      <p class="manuscrito">
-        acontece o tempo todo.<br>
-        no meio do dia, fazendo qualquer coisa,<br>
-        do nada vem um pensamento seu.<br>
-        e eu sorrio.<br>
-        sorrio sozinho, sem ninguém ver,<br>
-        sem ninguém entender por quê.<br><br>
-        são milhares de sorrisos assim,<br>
-        todos guardados aqui,<br>
-        todos causados por você.<br><br>
-        você faz meu coração sorrir<br>
-        mesmo quando ninguém está vendo 💗
-      </p>`
-  },
-  {
-    id:'noites',icone:'🌙',formato:'lua',largura:105,altura:105,rot:8,
-    titulo:'🌙 as noites que eu passei acordado pensando na gente',
-    conteudo:`
-      <div style="font-size:90px;margin:12px 0;opacity:.95">🌙⭐</div>
-      <p class="manuscrito">
-        tem noites que o sono não vem.<br>
-        eu fico ali, deitado, no escuro,<br>
-        e a minha cabeça só pensa em uma coisa:<br>
-        <strong style="color:#8b1a1a;font-size:1.15em">você.</strong><br><br>
-        penso em tudo o que eu quero viver.<br>
-        penso em tudo o que eu quero te dar.<br>
-        penso em quem você é,<br>
-        e em como eu sou sortudo<br>
-        por ter você na minha vida.<br><br>
-        são noites longas, sim.<br>
-        mas são as noites mais bonitas<br>
-        que eu já tive na vida.<br>
-        porque todas elas são suas 💫
-      </p>`
-  },
-  {
-    id:'mostrar',icone:'📝',formato:'listinha',largura:125,altura:110,rot:-9,
-    titulo:'📝 tudo o que eu quero te mostrar um dia',
-    conteudo:`
-      <p class="manuscrito">
-        existe um mundo inteiro dentro de mim<br>
-        que ninguém nunca viu.<br>
-        músicas que eu gosto,<br>
-        lugares que eu amo,<br>
-        histórias da minha vida,<br>
-        medos, sonhos, defeitos, qualidades.<br><br>
-        e eu nunca tive vontade de mostrar isso a ninguém.<br>
-        até você.<br><br>
-        hoje, tudo o que eu mais quero no mundo<br>
-        é poder te mostrar cada pedacinho meu.<br>
-        um por um.<br>
-        com calma.<br>
-        do jeito que você merece.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.15em">
-          quero que você seja a primeira pessoa<br>
-          a conhecer o eu de verdade.
-        </strong>
-      </p>`
-  },
-  {
-    id:'primeiros',icone:'🔮',formato:'papelzinho',largura:120,altura:100,rot:11,
-    titulo:'🔮 todos os "primeiros" que eu quero viver com você',
-    conteudo:`
-      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 12px">
-        eu já imaginei mil vezes.<br><br>
-        o primeiro olhar.<br>
-        o primeiro abraço.<br>
-        a primeira vez que eu vou ouvir sua voz de verdade.<br>
-        a primeira vez que nossas mãos vão se tocar.<br>
-        o primeiro "eu te amo" que vamos falar cara a cara.<br><br>
-        cada um desses momentos<br>
-        eu já ensaiei mil vezes na minha cabeça.<br>
-        cada um deles já vale mais<br>
-        do que qualquer coisa que eu já vivi.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.2em">
-          todos os meus "primeiros" a partir de agora<br>
-          eu quero que sejam com você.
-        </strong>
-      </p>`
-  },
-  {
-    id:'promessa',icone:'🤞',formato:'promessa',largura:110,altura:90,rot:-4,
-    titulo:'🤞 a promessa que eu fiz pra mim mesmo sobre você',
-    conteudo:`
-      <p class="manuscrito">
-        eu não faço promessas a toa.<br>
-        não falo o que não vou cumprir.<br><br>
-        mas tem uma promessa<br>
-        que eu fiz pra mim mesmo,<br>
-        no fundo do meu coração,<br>
-        e que eu vou cumprir custe o que custar:<br><br>
-        <strong style="color:#8b1a1a;font-size:1.3em;line-height:1.35">
-          — eu nunca vou fazer você se arrepender<br>
-          de ter me escolhido.<br>
-          nunca vou fazer você se sentir pouco.<br>
-          nunca vou te fazer falta.<br>
-          nunca vou te deixar na mão.<br>
-          nunca, nunca, nunca vou te machucar.<br>
-          — eu vou ser digno de você.<br>
-          custe o que custar.
-        </strong><br><br>
-        essa é a minha palavra. 💞
-      </p>`
-  },
-  {
-    id:'naoDisse',icone:'💌',formato:'carta-longa',largura:125,altura:145,rot:7,
-    titulo:'💌 todas as palavras que eu ainda não tive coragem de dizer',
-    conteudo:`
-      <p class="manuscrito linhas-papel" style="text-align:left;padding:0 10px">
-        todo dia eu falo muita coisa com você.<br>
-        mas existem palavras<br>
-        que ainda ficam presas na garganta.<br>
-        palavras que eu escrevo e apago.<br>
-        que eu penso e não mando.<br>
-        que eu sinto e não consigo falar.<br><br>
-        são palavras grandes demais.<br>
-        fortes demais.<br>
-        verdadeiras demais.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.2em">
-          um dia eu vou conseguir dizer todas elas.<br>
-          todas, sem exceção.<br>
-          e quando esse dia chegar,<br>
-          você vai finalmente entender<br>
-          o quanto, o quão profundo,<br>
-          e o quão verdadeiramente<br>
-          <em style="font-size:1.4em">eu te amo.</em>
-        </strong><br><br>
-        por enquanto, fica aqui<br>
-        um pedacinho do que ainda não disse 💘
-      </p>`
-  },
-  {
-    id:'espera',icone:'🕰️',formato:'relogio',largura:100,altura:100,rot:-14,
-    titulo:'🕰️ cada segundo que eu espero pra finalmente te encontrar',
-    conteudo:`
-      <div style="font-size:95px;margin:12px 0">⏳💗</div>
-      <p class="manuscrito">
-        eu espero.<br>
-        espero todo dia.<br>
-        espero cada segundo,<br>
-        cada minuto,<br>
-        cada hora.<br><br>
-        tem horas que a espera parece longa.<br>
-        tem horas que dói.<br>
-        tem horas que eu quero poder apertar um botão<br>
-        e chegar logo no dia em que eu finalmente te encontro.<br><br>
-        mas eu sei que vai valer a pena.<br>
-        cada segundo dessa espera<br>
-        vai parecer pequeno<br>
-        no momento em que eu finalmente puder te olhar nos olhos<br>
-        e te dizer na sua cara:<br><br>
-        <strong style="color:#8b1a1a;font-size:1.35em">
-          — valeu a pena esperar por você.
-        </strong><br><br>
-        eu espero. com todo o coração. 💫
-      </p>`
-  },
-  {
-    id:'certeza',icone:'❤️',formato:'certeza',largura:110,altura:110,rot:3,
-    titulo:'❤️ a certeza que eu tenho, mesmo sem te ter conhecido ainda',
-    conteudo:`
-      <p class="manuscrito" style="font-size:1.15em">
-        muita gente vai dizer que eu não posso ter certeza de nada.<br>
-        que é cedo.<br>
-        que não existe.<br>
-        que não é real.<br><br>
-        mas essas pessoas não sentem o que eu sinto.<br>
-        elas não sabem o que acontece comigo<br>
-        toda vez que eu falo com você.<br><br>
-        <strong style="color:#8b1a1a;font-size:1.35em;line-height:1.4">
-          eu tenho uma certeza dentro do peito<br>
-          que é maior que qualquer dúvida,<br>
-          maior que qualquer distância,<br>
-          maior que qualquer opinião alheia.<br><br>
-          a certeza de que é você.<br>
-          que sempre foi você.<br>
-          que em qualquer lugar,<br>
-          em qualquer tempo,<br>
-          em qualquer vida —<br>
-          <em style="font-size:1.5em">eu iria escolher você.</em>
-        </strong><br><br>
-        essa é a única verdade que eu preciso. 💍
-      </p>`
+// Corações flutuantes
+(function(){
+  var container = document.getElementById('hearts-container');
+  if(!container) return;
+  function createHeart(){
+    var h = document.createElement('div');
+    h.className = 'float-heart';
+    var size = 10 + Math.random() * 24;
+    var left = Math.random() * 100;
+    var dur = 6 + Math.random() * 8;
+    var delay = Math.random() * 5;
+    var color = Math.random() > 0.5 ? 'var(--accent)' : 'var(--accent2)';
+    h.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg>`;
+    h.style.left = left + '%';
+    h.style.animationDuration = dur + 's';
+    h.style.animationDelay = delay + 's';
+    container.appendChild(h);
+    setTimeout(function(){ h.remove() }, (dur + delay) * 1000);
   }
-];
+  for(var i=0;i<15;i++) setTimeout(createHeart, i * 300);
+  setInterval(createHeart, 600);
+})();
 
-const cursor = document.getElementById('cursor');
-const brilho = document.getElementById('brilho');
-document.addEventListener('mousemove',e=>{
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  brilho.style.left = e.clientX + 'px';
-  brilho.style.top = e.clientY + 'px';
-});
-document.addEventListener('mousedown',()=>cursor.style.transform='translate(-50%,-50%) scale(1.8)');
-document.addEventListener('mouseup',()=>cursor.style.transform='translate(-50%,-50%) scale(1)');
-
-const caixa = document.getElementById('caixa');
-const containerItens = document.getElementById('itens');
-const btnVoltar = document.getElementById('voltarCaixa');
-let aberta = false;
-
-function posicoesItens(){
-  const w = window.innerWidth, h = window.innerHeight;
-  const centroX = w/2, centroY = h/2;
-  const raio = Math.min(w,h) * 0.4;
-  return ITENS.map((item,i)=>{
-    const angulo = (i / ITENS.length) * Math.PI * 2 - Math.PI/2 + (Math.random()-.5)*0.3;
-    const r = raio * (0.75 + Math.random()*0.35);
-    return {
-      x: centroX + Math.cos(angulo) * r - item.largura/2,
-      y: centroY + Math.sin(angulo) * r - item.altura/2 + (Math.random()-.5)*40
-    };
+// Botão surpresa
+(function(){
+  var btn = document.getElementById('btnSurpresa');
+  var msg = document.getElementById('msgSurpresa');
+  if(!btn || !msg) return;
+  btn.addEventListener('click', function(){
+    msg.classList.toggle('show');
+    btn.textContent = msg.classList.contains('show') ? 'Guarde a surpresa 💜' : 'Clique aqui para uma surpresa 💜';
+    if(msg.classList.contains('show')){
+      msg.scrollIntoView({behavior:'smooth', block:'center'});
+    }
   });
-}
-
-function abrirCaixa(){
-  if(aberta) return;
-  aberta = true;
-  caixa.classList.add('aberta');
-  for(let i=0;i<28;i++){
-    setTimeout(()=>{
-      const c = document.createElement('div');
-      c.className = 'coracao-flutuante';
-      c.textContent = ['💖','✨','💗','💕','⭐'][Math.floor(Math.random()*5)];
-      c.style.left = (window.innerWidth/2 + (Math.random()-.5)*220) + 'px';
-      c.style.top = (window.innerHeight*0.55) + 'px';
-      c.style.animationDelay = (Math.random()*.5) + 's';
-      document.body.appendChild(c);
-      setTimeout(()=>c.remove(),6500);
-    },i*55);
-  }
-  const pos = posicoesItens();
-  containerItens.innerHTML = '';
-  ITENS.forEach((item,i)=>{
-    const el = document.createElement('div');
-    el.className = `item ${item.formato}`;
-    el.style.width = item.largura + 'px';
-    el.style.height = item.altura + 'px';
-    el.style.left = (window.innerWidth/2 - item.largura/2) + 'px';
-    el.style.top = (window.innerHeight*0.45) + 'px';
-    el.style.zIndex = 10 + i;
-    el.innerHTML = `
-      <div class="face-item">${item.icone}</div>
-      <div class="legenda-item">${item.titulo.replace(/^.{1,5}/,'')}</div>
-    `;
-    el.addEventListener('click',()=>abrirItem(item));
-    containerItens.appendChild(el);
-    setTimeout(()=>{
-      el.classList.add('visivel');
-      el.style.left = pos[i].x + 'px';
-      el.style.top = pos[i].y + 'px';
-      el.style.transform = `rotate(${item.rot + (Math.random()-.5)*10}deg)`;
-    }, 400 + i*90);
-  });
-  setTimeout(()=>btnVoltar.classList.add('visivel'), 1500);
-}
-
-function fecharCaixa(){
-  aberta = false;
-  caixa.classList.remove('aberta');
-  btnVoltar.classList.remove('visivel');
-  const centroX = window.innerWidth/2, centroY = window.innerHeight*0.45;
-  document.querySelectorAll('.item').forEach((el,i)=>{
-    el.classList.remove('visivel');
-    el.style.left = (centroX - el.offsetWidth/2) + 'px';
-    el.style.top = centroY + 'px';
-    el.style.transform = 'rotate(0) scale(.3)';
-    setTimeout(()=>el.remove(),700);
-  });
-}
-
-caixa.addEventListener('click',abrirCaixa);
-btnVoltar.addEventListener('click',fecharCaixa);
-
-const modal = document.getElementById('modal');
-const tituloItem = document.getElementById('tituloItem');
-const conteudoItem = document.getElementById('conteudoItem');
-const fecharItem = document.getElementById('fecharItem');
-
-function abrirItem(item){
-  tituloItem.textContent = item.titulo;
-  conteudoItem.innerHTML = item.conteudo;
-  modal.classList.add('aberto');
-  for(let i=0;i<10;i++){
-    setTimeout(()=>{
-      const c = document.createElement('div');
-      c.className = 'coracao-flutuante';
-      c.textContent = ['💖','💕','✨'][Math.floor(Math.random()*3)];
-      c.style.left = (Math.random()*window.innerWidth) + 'px';
-      c.style.top = window.innerHeight + 'px';
-      document.body.appendChild(c);
-      setTimeout(()=>c.remove(),6500);
-    },i*90);
-  }
-}
-
-fecharItem.onclick = ()=>modal.classList.remove('aberto');
-modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('aberto')});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('aberto')});
-
-let redimTimeout;
-window.addEventListener('resize',()=>{
-  if(!aberta) return;
-  clearTimeout(redimTimeout);
-  redimTimeout = setTimeout(()=>{
-    const pos = posicoesItens();
-    document.querySelectorAll('.item').forEach((el,i)=>{
-      if(pos[i]){el.style.left = pos[i].x + 'px';el.style.top = pos[i].y + 'px'}
-    });
-  },200);
-});
+})();
 </script>
 </html>
